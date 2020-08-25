@@ -30,13 +30,16 @@ const handleMessage = (sender_psid, received_message, userInfo) => {
 
     // Check if the message contains text
     if (userInfo.solved === false) {    
-        
         // Create the payload for a basic text message
         response = {
-            "text": `This is your current maze:\n${mazeString}\nYou may respond with "quit", or "new maze"`
+            "text": `This is your current maze:\n${mazeString}\nYou may respond with the coded solution, "quit", or "new maze"`
             
         }
-    }  
+    }  else if (userInfo.solved === true) {
+        response = {
+            "text": "would you like to try another maze?"
+        }
+    } 
     
     // Sends the response message
     callSendAPI(sender_psid, response); 
