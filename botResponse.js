@@ -3,13 +3,29 @@ const request = require('request');
 // Handles messages events
 const handleMessage = (sender_psid, received_message, userInfo) => {
     let response;
+    const wallNode = "⬛"
+    const openNode = "⬜"
+    const maze = userInfo.maze
+
+    let mazeString = ""
+
+    for (let i=0; i<maze.length; i++) {
+        for (let j=0;j<maze[i].length; j++) {
+            if (maze[i][j] === 1) {
+                mazeString+=wallNode
+            } else if (maze[i][j] === 0) {
+                mazeString+=openNode
+            }
+        }
+    }
 
     // Check if the message contains text
-    if (received_message.text) {    
-
+    if (userInfo.solved === false) {    
+        
         // Create the payload for a basic text message
         response = {
-        "text": `You sent the message: "${received_message.text}".`
+            "text": `${mazeString}`
+            
         }
     }  
     
