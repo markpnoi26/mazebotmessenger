@@ -2,7 +2,7 @@
 const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 
 const 
-    { fetchOneByKey } = require('./stateDB.js'),
+    { getUserById } = require('./stateDB.js'),
     express = require('express'),
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json())
@@ -12,11 +12,12 @@ app.listen(process.env.PORT || 3000, () => console.log(`webhook is listening on 
 app.post('/webhook', (req, res) => {
     let body = req.body
     if (body.object === 'page') {
+        console.log(body.entry)
         body.entry.forEach((entry) => {
             let webhook_event = entry.messaging[0]
             console.log(webhook_event)
         })
-        fetchOneByKey()
+        getUserById("1")
         res.status(200).send('EVENT_RECEIVED')
     } else {
         res.sendStatus(404)
