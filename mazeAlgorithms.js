@@ -64,6 +64,6 @@ const randomStartAndEnd = (fourCorners) => {
 } 
 
 
-module.export = {
+module.exports = {
     generateMaze
 }
