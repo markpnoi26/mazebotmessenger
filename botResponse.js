@@ -32,7 +32,7 @@ const handleMessage = (sender_psid, received_message, userInfo) => {
     if (userInfo.solved === false) {    
         // Create the payload for a basic text message
         response = {
-            "text": `This is your current maze:\n${mazeString}\nYou may respond with the coded solution, "quit", or "new maze"`
+            "text": `{mazeString}`
             
         }
     }  else if (userInfo.solved === true) {
@@ -42,7 +42,9 @@ const handleMessage = (sender_psid, received_message, userInfo) => {
     } 
     
     // Sends the response message
-    callSendAPI(sender_psid, response); 
+    callSendAPI(sender_psid, {'text': "This is your current maze:"})
+    callSendAPI(sender_psid, response)
+    callSendAPI(sender_psid, {'text': `You may respond with the coded solution, "quit", or "new maze"`})
 }
 
 // Handles messaging_postbacks events
