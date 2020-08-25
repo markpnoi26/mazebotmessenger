@@ -15,9 +15,8 @@ app.post('/webhook', (req, res) => {
         body.entry.forEach((entry) => {
             let webhook_event = entry.messaging[0]
             console.log(webhook_event)
-            fetchByOneKey()
         })
-
+        console.log(fetchByOneKey)
         res.status(200).send('EVENT_RECEIVED')
     } else {
         res.sendStatus(404)
