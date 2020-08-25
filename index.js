@@ -1,10 +1,10 @@
 'use strict'; 
-require('dotenv').config()
+const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 
 const 
     express = require('express'),
     bodyParser = require('body-parser'),
-    app = express().use(bodyParser.json()); 
+    app = express().use(bodyParser.json())
 
 app.listen(process.env.PORT || 3000, () => console.log(`webhook is listening on port:${process.env.PORT || "3000"}`))
 
