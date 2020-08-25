@@ -33,7 +33,9 @@ app.post('/webhook', (req, res) => {
                     // create new user, and store a new maze based on postback
                     // {userId: id, maze: [], solved: true}
                     // send the maze to user via emoji, set solved to false
-                    const [maze, startAndEnd] = generateMaze(7,11)
+                    
+                    // row first, then col
+                    const [maze, startAndEnd] = generateMaze(11,7)
                     createNewUserWithId(userID, maze, startAndEnd[0], startAndEnd[1])
                     userInfo = {user_id: userID, maze, start: startAndEnd[0], end: startAndEnd[1], solved: false}
                     console.log(userInfo)
