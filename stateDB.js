@@ -10,11 +10,11 @@ AWS.config.update(awsConfig)
 
 let dynamoDB = new AWS.DynamoDB.DocumentClient();
 
-let fetchOneByKey = () => {
+let getUserById = (id) => {
     var params = {
         TableName: 'user-state',
         Key: {
-            'user_id': "1"
+            'user_id': id
         }
     }
 
@@ -28,5 +28,5 @@ let fetchOneByKey = () => {
 }
 
 module.exports = {
-    fetchOneByKey
+    getUserById
 }
