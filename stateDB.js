@@ -10,7 +10,7 @@ AWS.config.update(awsConfig)
 
 let dynamoDB = new AWS.DynamoDB.DocumentClient();
 
-let getUserById = (id) => {
+const getUserById = (id) => {
     var params = {
         TableName: 'user-state',
         Key: {
@@ -18,17 +18,14 @@ let getUserById = (id) => {
         }
     }
 
-    let userInfo;
     dynamoDB.get(params, (err, data) => {
         if (err) {
-            console.log('from-get', {err})
+            return err
         } else {
-            console.log('from-get',{data})
-            userInfo = JSON.parse(data)
+            return data.Item
         }
     })
 
-    return userInfo || null
 }
 
 let createNewUserWithId = (id, maze, start, end) => {
@@ -51,6 +48,8 @@ let createNewUserWithId = (id, maze, start, end) => {
         }
     })
 }
+
+getUserById("2767971343303031")
 
 module.exports = {
     getUserById,
