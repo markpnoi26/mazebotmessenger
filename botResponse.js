@@ -5,6 +5,8 @@ const handleMessage = (sender_psid, received_message, userInfo) => {
     let response;
     const wallNode = "⬛"
     const openNode = "⬜"
+    const start = "🐿️"
+    const end = "🥜"
     const maze = userInfo.maze
 
     let mazeString = ""
@@ -14,7 +16,13 @@ const handleMessage = (sender_psid, received_message, userInfo) => {
             if (maze[i][j] === 1) {
                 mazeString+=wallNode
             } else if (maze[i][j] === 0) {
-                mazeString+=openNode
+                if (i === userInfo.start[0] && j === userInfo.start[1]) {
+                    mazeString+=start
+                } else if (i === userInfo.end[0] && j === userInfo.end[1]) {
+                    mazeString+=end
+                } else {
+                    mazeString+=openNode
+                }
             }
         }
         mazeString+="\n"
