@@ -17,6 +17,7 @@ app.post('/webhook', (req, res) => {
         let userID, userMessage, userPostback;
         body.entry.forEach((entry) => {
             let webhook_event = entry.messaging[0]
+            console.log(webhook_event)
             userID = webhook_event.sender.id
             userMessage = webhook_event.message
             userPostback = webhook_event.postback
