@@ -36,7 +36,7 @@ let createNewUserWithId = (id, maze, start, end) => {
             maze: maze,
             start: start,
             end: end,
-            solved: true
+            solved: false
         }
     }
 
