@@ -14,7 +14,7 @@ const callSendAPI = (sender_psid, response) => {
 }
 
 
-modules.export = {
+module.export = {
     handleMessage,
     handlePostback,
     callSendAPI
