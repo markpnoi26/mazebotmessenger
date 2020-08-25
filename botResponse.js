@@ -33,7 +33,10 @@ const handleMessage = (sender_psid, received_message, userInfo) => {
         
         // Create the payload for a basic text message
         response = {
-            "text": `${mazeString}`
+            "text": `
+                This is your current maze:
+                ${mazeString}
+                You may respond with "quit", or "new maze"`
             
         }
     }  
