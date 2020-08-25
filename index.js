@@ -23,6 +23,7 @@ app.post('/webhook', (req, res) => {
             userPostback = webhook_event.postback
 
         })
+        console.log(userID)
         const userInfo = getUserById(userID)
         console.log(userInfo)
         // if user exists, check the user
