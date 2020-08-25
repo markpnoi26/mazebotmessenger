@@ -32,8 +32,8 @@ app.post('/webhook', (req, res) => {
             })
         
             // if user exists, check the user
-            if (userInfo) {
-                console.log("user info:", userInfo)
+            // if (userInfo) {
+            //     console.log("user info:", userInfo)
                 // 3 possible responses => if userInfo.solved? ask to quit or solve another
                 
                 // response 1 (maze is not solved)
@@ -55,13 +55,13 @@ app.post('/webhook', (req, res) => {
                 //     present tutorial
                 //     present selection "easy", "medium", or "hard" 
 
-            } else {
+            // } else {
                 // create new user, and store a new maze based on postback
                 // {userId: id, maze: [], solved: true}
                 // send the maze to user via emoji, set solved to false
-                const [maze, startAndEnd] = generateMaze(5,5)
-                createNewUserWithId(userID, maze, startAndEnd[0], startAndEnd[1])
-            }
+            //     const [maze, startAndEnd] = generateMaze(5,5)
+            //     createNewUserWithId(userID, maze, startAndEnd[0], startAndEnd[1])
+            // }
         
 
         res.status(200).send('EVENT_RECEIVED')
