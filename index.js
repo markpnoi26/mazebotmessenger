@@ -24,6 +24,7 @@ app.post('/webhook', (req, res) => {
 
         })
         const userInfo = getUserById(userID)
+        console.log(userInfo)
         // if user exists, check the user
         if (userInfo) {
             console.log("user info:", userInfo)
