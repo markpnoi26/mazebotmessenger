@@ -28,12 +28,14 @@ let getUserById = (id) => {
     })
 }
 
-let createNewUserWithId = (id, maze) => {
+let createNewUserWithId = (id, maze, start, end) => {
     var params = {
         TableName: 'user-state',
         Item: {
             user_id: id,
             maze: maze,
+            start: start,
+            end: end,
             solved: true
         }
     }
