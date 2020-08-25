@@ -17,6 +17,7 @@ const handleMessage = (sender_psid, received_message, userInfo) => {
                 mazeString+=openNode
             }
         }
+        mazeString+="\n"
     }
 
     // Check if the message contains text
