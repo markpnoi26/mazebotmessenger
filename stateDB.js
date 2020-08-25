@@ -21,6 +21,26 @@ let getUserById = (id) => {
     dynamoDB.get(params, (err, data) => {
         if (err) {
             console.log({err})
+            return null
+        } else {
+            return data.Item
+        }
+    })
+}
+
+let createNewUserWithId = (id, maze) => {
+    var params = {
+        TableName: 'user-state',
+        Item: {
+            user_id: id,
+            maze: maze,
+            solved: true
+        }
+    }
+
+    dynamoDB.put(params, (err, data) => {
+        if (err) {
+            console.log({err})
         } else {
             console.log({data})
         }
@@ -28,5 +48,6 @@ let getUserById = (id) => {
 }
 
 module.exports = {
-    getUserById
+    getUserById,
+    createNewUserWithId
 }
