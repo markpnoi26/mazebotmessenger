@@ -24,7 +24,7 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
 
     // Your verify token. Should be a random string.
-    let VERIFY_TOKEN = "maze-bot-verfification-token-2311"
+    let VERIFY_TOKEN = "09174423516"
 
     // Parse the query params
     let mode = req.query['hub.mode'];
