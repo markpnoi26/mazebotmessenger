@@ -23,9 +23,10 @@ app.post('/webhook', (req, res) => {
             userPostback = webhook_event.postback
 
         })
+
         getUserById(userID)
             .then(response => {
-                console.log(response.data)
+                console.log(response)
             })
             .catch(error => {
                 console.log(error)
