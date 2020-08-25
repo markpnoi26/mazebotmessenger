@@ -23,7 +23,7 @@ let getUserById = (id) => {
             console.log({err})
             return null
         } else {
-            return data.Item
+            return data
         }
     })
 }

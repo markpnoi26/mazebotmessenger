@@ -26,7 +26,7 @@ app.post('/webhook', (req, res) => {
         const userInfo = getUserById(userID)
         // if user exists, check the user
         if (userInfo) {
-            console.log(userInfo)
+            console.log("user info:", userInfo)
             // 3 possible responses => if userInfo.solved? ask to quit or solve another
             
             // response 1 (maze is not solved)
