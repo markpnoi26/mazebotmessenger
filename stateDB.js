@@ -28,5 +28,5 @@ let fetchOneByKey = () => {
 }
 
 module.exports = {
-    "fetchOneByKey": fetchOneByKey
+    fetchOneByKey
 }
