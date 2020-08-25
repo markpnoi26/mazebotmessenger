@@ -18,13 +18,7 @@ const getUserById = (id) => {
         }
     }
 
-    dynamoDB.get(params, (err, data) => {
-        if (err) {
-            return err
-        } else {
-            return data.Item
-        }
-    })
+    return dynamoDB.get(params).promise()
 
 }
 
