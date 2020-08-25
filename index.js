@@ -4,6 +4,7 @@ const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 const 
     { getUserById, createNewUserWithId} = require('./stateDB.js'),
     { handleMessage, handlePostback, callSendAPI } = require('./botResponse.js'),
+    { generateMaze } = require('./mazeAlgorithms.js')
     express = require('express'),
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json())
@@ -25,7 +26,7 @@ app.post('/webhook', (req, res) => {
         const userInfo = getUserById(userID)
         // if user exists, check the user
         if (userInfo) {
-
+            console.log(userInfo)
             // 3 possible responses => if userInfo.solved? ask to quit or solve another
             
             // response 1 (maze is not solved)
@@ -51,7 +52,8 @@ app.post('/webhook', (req, res) => {
             // create new user, and store a new maze based on postback
             // {userId: id, maze: [], solved: true}
             // send the maze to user via emoji, set solved to false
-            createNewUserWithId(userID)
+            const [maze, startAndEnd] = generateMaze(5,5)
+            createNewUserWithId(userID, maze, startAndEnd[0], startAndEnd[1])
             console.log(userMessage, userPostback)
         }
 
