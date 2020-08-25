@@ -14,7 +14,7 @@ let getUserById = (id) => {
     var params = {
         TableName: 'user-state',
         Key: {
-            'user_id': id
+            user_id: id
         }
     }
 
