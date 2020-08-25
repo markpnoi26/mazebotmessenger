@@ -1,8 +1,8 @@
 'use strict'; 
 const PAGE_ACCESS_TOKEN = process.env.page_access_token;
-const { fetchByOneKey } = require('./stateDB.js')
 
 const 
+    { fetchOneByKey } = require('./stateDB.js'),
     express = require('express'),
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json())
