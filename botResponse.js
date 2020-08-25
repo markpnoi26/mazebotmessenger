@@ -3,7 +3,7 @@ const request = require('request');
 // Handles messages events
 const handleMessage = (sender_psid, received_message, userInfo) => {
     let response;
-    
+
     // Check if the message contains text
     if (received_message.text) {    
 
@@ -46,7 +46,7 @@ const callSendAPI = (sender_psid, response) => {
 }
 
 
-module.export = {
+module.exports = {
     handleMessage,
     handlePostback,
     callSendAPI
