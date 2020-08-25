@@ -20,9 +20,10 @@ let getUserById = (id) => {
 
     dynamoDB.get(params, (err, data) => {
         if (err) {
-            console.log({err})
+            console.log('from-get', {err})
             return null
         } else {
+            console.log('from-get',{data})
             return data
         }
     })
@@ -42,9 +43,9 @@ let createNewUserWithId = (id, maze, start, end) => {
 
     dynamoDB.put(params, (err, data) => {
         if (err) {
-            console.log({err})
+            console.log('from-put', {err})
         } else {
-            console.log({data})
+            console.log('from-put',{data})
         }
     })
 }
