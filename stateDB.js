@@ -40,7 +40,7 @@ let createNewUserWithId = (id, maze, start, end) => {
         }
     }
 
-    dynamoDB.put(params, (err, data) => {
+    dynamoDB.post(params, (err, data) => {
         if (err) {
             console.log({err})
         } else {

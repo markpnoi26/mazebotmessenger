@@ -54,8 +54,6 @@ app.post('/webhook', (req, res) => {
             // send the maze to user via emoji, set solved to false
             const [maze, startAndEnd] = generateMaze(5,5)
             createNewUserWithId(userID, maze, startAndEnd[0], startAndEnd[1])
-            const newUser = getUserById(userID)
-            console.log(newUser)
         }
 
         res.status(200).send('EVENT_RECEIVED')
