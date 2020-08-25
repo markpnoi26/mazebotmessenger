@@ -1,5 +1,6 @@
 'use strict'; 
 const PAGE_ACCESS_TOKEN = process.env.page_access_token;
+const { fetchByOneKey } = require('./stateDB.js')
 
 const 
     express = require('express'),
@@ -14,6 +15,7 @@ app.post('/webhook', (req, res) => {
         body.entry.forEach((entry) => {
             let webhook_event = entry.messaging[0]
             console.log(webhook_event)
+            fetchByOneKey()
         })
 
         res.status(200).send('EVENT_RECEIVED')
