@@ -18,15 +18,17 @@ let getUserById = (id) => {
         }
     }
 
+    let userInfo;
     dynamoDB.get(params, (err, data) => {
         if (err) {
             console.log('from-get', {err})
-            return null
         } else {
             console.log('from-get',{data})
-            return data
+            userInfo = data
         }
     })
+
+    return userInfo || null
 }
 
 let createNewUserWithId = (id, maze, start, end) => {
