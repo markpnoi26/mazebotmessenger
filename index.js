@@ -4,7 +4,7 @@ const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 const 
     { getUserById, createNewUserWithId} = require('./stateDB.js'),
     { handleMessage, handlePostback, callSendAPI } = require('./botResponse.js'),
-    { generateMaze } = require('./mazeAlgorithms.js')
+    { generateMaze } = require('./mazeAlgorithms.js'),
     express = require('express'),
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json())
