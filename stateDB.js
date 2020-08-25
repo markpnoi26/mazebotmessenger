@@ -43,8 +43,6 @@ let createNewUserWithId = (id, maze, start, end) => {
     })
 }
 
-getUserById("2767971343303031")
-
 module.exports = {
     getUserById,
     createNewUserWithId
