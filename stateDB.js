@@ -24,7 +24,7 @@ let getUserById = (id) => {
             console.log('from-get', {err})
         } else {
             console.log('from-get',{data})
-            userInfo = JSON.parse(data.Item)
+            userInfo = JSON.parse(data)
         }
     })
 
