@@ -17,7 +17,6 @@ app.post('/webhook', (req, res) => {
         let userID, userMessage, userPostback;
         body.entry.forEach((entry) => {
             let webhook_event = entry.messaging[0]
-            console.log(webhook_event)
             userID = webhook_event.sender.id
             userMessage = webhook_event.message
             userPostback = webhook_event.postback
@@ -26,7 +25,18 @@ app.post('/webhook', (req, res) => {
 
         getUserById(userID)
             .then(response => {
-                console.log(response)
+                let userInfo = response.Item
+                if (userInfo) {
+                    console.log(userInfo)
+                } else {
+                    // create new user, and store a new maze based on postback
+                    // {userId: id, maze: [], solved: true}
+                    // send the maze to user via emoji, set solved to false
+                    const [maze, startAndEnd] = generateMaze(5,5)
+                    createNewUserWithId(userID, maze, startAndEnd[0], startAndEnd[1])
+                    userInfo = {userID, maze, start: startAndEnd[0], end: startAndEnd[1]}
+                    console.log(userInfo)
+                }
             })
             .catch(error => {
                 console.log(error)
