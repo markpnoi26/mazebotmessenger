@@ -48,39 +48,6 @@ app.post('/webhook', (req, res) => {
             .catch(error => {
                 console.log(error)
             })
-        
-            // if user exists, check the user
-            // if (userInfo) {
-            //     console.log("user info:", userInfo)
-                // 3 possible responses => if userInfo.solved? ask to quit or solve another
-                
-                // response 1 (maze is not solved)
-                //     check if userMessage.text !== "quit", "new maze"
-                //     check the potential solution
-                //         if solution is right ask "quit" or "new maze"
-                //         if solution is invalid send an error report (ie, format of code is wrong) (you may send a message "quit" or "new maze"), 
-                //         if solution is valid but incomplete send unsolved maze with current solution (you may send a message "quit" or "new maze")
-                //     check else if userMessage.text === "quit"
-                //         clear userData on DB, and set solved to true
-                //         send see you again soon!
-                //     check else if userMessage.text === "new Maze"
-                //         present selection "easy", "medium", or "hard"
-                
-                // response 2 (maze is solved && userMessage.text !== "tutorial")
-                //     present selection "easy", "medium", or "hard"
-
-                // response 3 (maze is solved && userMessage.text === "tutorial")
-                //     present tutorial
-                //     present selection "easy", "medium", or "hard" 
-
-            // } else {
-                // create new user, and store a new maze based on postback
-                // {userId: id, maze: [], solved: true}
-                // send the maze to user via emoji, set solved to false
-            //     const [maze, startAndEnd] = generateMaze(5,5)
-            //     createNewUserWithId(userID, maze, startAndEnd[0], startAndEnd[1])
-            // }
-        
 
         res.status(200).send('EVENT_RECEIVED')
     } else {
