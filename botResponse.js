@@ -33,26 +33,22 @@ const handleGreetings = (sender_psid, received_message) => {
 
     callSendAPI(sender_psid, { 
         'text': `
-            Welcome to MazeBot - a small coding challenge maze solver. Our mazebot generates a random maze based on difficulty and it is your job to solve this maze, by coding a solution into the messenger.
+        Welcome to MazeBot - a small coding challenge maze solver. Our mazebot generates a random maze based on difficulty and it is your job to solve this maze, by coding a solution into the messenger.\nHow Does it work?\nA sample maze:\n🐿️⬛⬛⬛🥜\n⬜⬜⬜⬜⬜\n⬜⬛⬛⬛⬜
+        The solution: <d, r, r, d> or <d, loop(r, 2), d>
 
-            How Does it work?
-            A sample maze: *looks like this*
+        Code structure: 
+        directions: u <up>, d <down>, l <left>, r <right>, loop(<direction>, <repeat number>)
 
-            The solution: <d, r, r, d> or <d, loop(r, 2), d>
+        If the code has errors, the bot will notify you. 
+        if your code hits a wall, or does not reach the target, a visual representation will be sent to you.
 
-            Code structure: 
-            directions: u <up>, d <down>, l <left>, r <right>, loop(<direction>, <repeat number>)
+        Rules:
+        - A single operation is separated by comma.
+        - Each direction (u,l,r,d), and loop(<dir>, <repeat>) is a single operation.
+        - The code must not hit any walls in order to succeed.
+        - The maze will have exactly one solution.
 
-            If the code has errors, the bot will notify you. 
-            if your code hits a wall, or does not reach the target, a visual representation will be sent to you.
-
-            Rules:
-            - A single operation is separated by comma.
-            - Each direction (u,l,r,d), and loop(<dir>, <repeat>) is a single operation.
-            - The code must not hit any walls in order to succeed.
-            - The maze will have exactly one solution.
-
-            5x5 (easy), 7x7 (medium), 7x11 (hard)
+        5x5 (easy), 7x7 (medium), 7x11 (hard)
         ` 
     })
     callSendAPI(sender_psid, response)
