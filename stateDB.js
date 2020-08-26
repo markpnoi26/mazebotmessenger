@@ -22,6 +22,17 @@ const getUserById = (id) => {
 
 }
 
+let deleteUserById = (id) => {
+    var params = {
+        TableName: 'user-state',
+        Key: {
+            user_id: id
+        }
+    }
+
+    return dynamoDB.delete(params).promise()
+}
+
 let createNewUserWithId = (id, maze, start, end) => {
     var params = {
         TableName: 'user-state',
@@ -45,5 +56,6 @@ let createNewUserWithId = (id, maze, start, end) => {
 
 module.exports = {
     getUserById,
-    createNewUserWithId
+    createNewUserWithId,
+    deleteUserById
 }
