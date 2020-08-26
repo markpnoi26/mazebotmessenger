@@ -3,7 +3,7 @@ const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 
 const 
     { getUserById, createNewUserWithId} = require('./stateDB.js'),
-    { handleMessage, handlePostback } = require('./botResponse.js'),
+    { handleMessage, handlePostback, handleGreetings } = require('./botResponse.js'),
     { generateMaze } = require('./mazeAlgorithms.js'),
     express = require('express'),
     bodyParser = require('body-parser'),
@@ -24,30 +24,33 @@ app.post('/webhook', (req, res) => {
 
         })
 
-        getUserById(userID)
-            .then(response => {
-                let userInfo = response.Item
-                // if user exists check the postback or message
-                if (userInfo) {
-                    if (userMessage) return handleMessage(userID, userMessage, userInfo)
-                    if (userPostback) return handlePostback(userID, userPostback, userInfo)
-                } else {
-                    const [maze, startAndEnd] = generateMaze(11,9)
-                    createNewUserWithId(userID, maze, startAndEnd[0], startAndEnd[1])
-                    userInfo = {
-                        maze,
-                        user_id: userID, 
-                        start: startAndEnd[0], 
-                        end: startAndEnd[1],  
-                        solved: false
-                    }
-                    if (userMessage) return handleMessage(userID, userMessage, userInfo)
-                    if (userPostback) return handlePostback(userID, userPostback, userInfo)
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        if (userMessage.text === "start") {
+            handleGreetings(userID, userMessage)
+        }
+        // getUserById(userID)
+        //     .then(response => {
+        //         let userInfo = response.Item
+        //         // if user exists check the postback or message
+        //         if (userInfo) {
+        //             if (userMessage) return handleMessage(userID, userMessage, userInfo)
+        //             if (userPostback) return handlePostback(userID, userPostback, userInfo)
+        //         } else {
+        //             const [maze, startAndEnd] = generateMaze(11,9)
+        //             createNewUserWithId(userID, maze, startAndEnd[0], startAndEnd[1])
+        //             userInfo = {
+        //                 maze,
+        //                 user_id: userID, 
+        //                 start: startAndEnd[0], 
+        //                 end: startAndEnd[1],  
+        //                 solved: false
+        //             }
+        //             if (userMessage) return handleMessage(userID, userMessage, userInfo)
+        //             if (userPostback) return handlePostback(userID, userPostback, userInfo)
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
 
         res.status(200).send('EVENT_RECEIVED')
     } else {
