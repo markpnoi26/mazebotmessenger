@@ -24,7 +24,7 @@ app.post('/webhook', (req, res) => {
 
         })
 
-        if (userMessage.text && userMessage.text === "start") {
+        if (userMessage && userMessage.text === "start") {
             handleGreetings(userID, userMessage)
         }
         // getUserById(userID)
