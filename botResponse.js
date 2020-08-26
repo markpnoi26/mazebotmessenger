@@ -2,6 +2,11 @@ const request = require('request');
 
 // Handles messages events
 const handleMessage = (sender_psid, received_message, userInfo) => {
+    
+}
+
+// Handles messaging_postbacks events
+const handlePostback = (sender_psid, received_postback, userInfo) => {
     let response;
     const wallNode = "⬛"
     const openNode = "⬜"
@@ -45,11 +50,6 @@ const handleMessage = (sender_psid, received_message, userInfo) => {
     callSendAPI(sender_psid, response)
     callSendAPI(sender_psid, {'text': "This is your current maze:"})
     callSendAPI(sender_psid, {'text': `You may respond with the coded solution, "quit", or "new maze"`})
-}
-
-// Handles messaging_postbacks events
-const handlePostback = (sender_psid, received_postback) => {
-
 }
 
 // Sends response messages via the Send API
