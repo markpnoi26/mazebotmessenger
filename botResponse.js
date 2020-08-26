@@ -16,8 +16,8 @@ const handlePostback = (sender_psid, received_postback, userInfo) => {
 
     let mazeString = ""
 
-    for (let i=0; i<maze.length; i++) {
-        for (let j=0;j<maze[i].length; j++) {
+    for (let i=1; i<maze.length-1; i++) {
+        for (let j=1;j<maze[i].length-1; j++) {
             if (maze[i][j] === 1) {
                 mazeString+=wallNode
             } else if (maze[i][j] === 0) {
