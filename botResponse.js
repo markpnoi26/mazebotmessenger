@@ -32,24 +32,7 @@ const handleGreetings = (sender_psid, received_message) => {
     }
 
     callSendAPI(sender_psid, { 
-        'text': `
-        Welcome to MazeBot - a small coding challenge maze solver. Our mazebot generates a random maze based on difficulty and it is your job to solve this maze, by coding a solution into the messenger.\nHow Does it work?\nA sample maze:\n🐿️⬛⬛⬛🥜\n⬜⬜⬜⬜⬜\n⬜⬛⬛⬛⬜
-        The solution: <d, r, r, d> or <d, loop(r, 2), d>
-
-        Code structure: 
-        directions: u <up>, d <down>, l <left>, r <right>, loop(<direction>, <repeat number>)
-
-        If the code has errors, the bot will notify you. 
-        if your code hits a wall, or does not reach the target, a visual representation will be sent to you.
-
-        Rules:
-        - A single operation is separated by comma.
-        - Each direction (u,l,r,d), and loop(<dir>, <repeat>) is a single operation.
-        - The code must not hit any walls in order to succeed.
-        - The maze will have exactly one solution.
-
-        5x5 (easy), 7x7 (medium), 7x11 (hard)
-        ` 
+        'text': `Welcome to MazeBot - a small coding challenge maze solver. Mazebot generates a random maze based on difficulty and it is your job to solve this maze, by coding a solution into the messenger.\n\nHow Does it work?\n\nA sample maze:\n🐿️⬛⬛⬛🥜\n⬜⬜⬜⬜⬜\n⬜⬛⬛⬛⬜\n\nThe solution: "d, r, r, d" or "d, loop(r, 2), d"\n\nCode structure:\n\n directions: u <up>, d <down>, l <left>, r <right>, loop(<direction>, <repeat number>)\n\nIf the code has errors, the bot will notify you.\n\nif your code hits a wall, or does not reach the target, a visual representation will be sent to you.\n\nRules:\n- A single operation is separated by comma.\n- Each direction (u,l,r,d), and loop(<dir>, <repeat>) is a single operation.\n- The code must not hit any walls in order to succeed.\n- The maze will have exactly one solution.` 
     })
     callSendAPI(sender_psid, response)
 }
