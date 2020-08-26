@@ -43,8 +43,7 @@ const handleMessage = (sender_psid, received_message, userInfo) => {
 
     // Sends the response message
     callSendAPI(sender_psid, response)
-    callSendAPI(sender_psid, { 'text': "This is your current maze:" })
-    callSendAPI(sender_psid, { 'text': `You may respond with the coded solution, "quit", or "new maze"` })
+    callSendAPI(sender_psid, { 'text': `This is your current maze. You may respond with the coded solution, "quit", or "new maze"` })
 }
 
 // Handles messaging_postbacks events
