@@ -1,49 +1,43 @@
 const request = require('request');
 
-// Handles messages events
-const handleMessage = (sender_psid, received_message, userInfo) => {
-    let response;
-    const wallNode = "⬛"
-    const openNode = "⬜"
-    const start = "🐿️"
-    const end = "🥜"
-    const maze = userInfo.maze
+const handleGreetings = (sender_psid, received_message) => {
 
-    let mazeString = ""
-
-    for (let i = 1; i < maze.length - 1; i++) {
-        for (let j = 1; j < maze[i].length - 1; j++) {
-            if (maze[i][j] === 1) {
-                mazeString += wallNode
-            } else if (maze[i][j] === 0) {
-                if (i === userInfo.start[0] && j === userInfo.start[1]) {
-                    mazeString += start
-                } else if (i === userInfo.end[0] && j === userInfo.end[1]) {
-                    mazeString += end
-                } else {
-                    mazeString += openNode
-                }
+    response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "Test message?",
+                    "subtitle": "sent when greeted",
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "Easy",
+                            "payload": "easy",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Medium",
+                            "payload": "med",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Hard",
+                            "payload": "hard",
+                        }
+                    ],
+                }]
             }
         }
-        mazeString += "\n"
     }
 
-    // Check if the message contains text
-    if (userInfo.solved === false) {
-        // Create the payload for a basic text message
-        response = {
-            "text": `${mazeString}`
-
-        }
-    } else if (userInfo.solved === true) {
-        response = {
-            "text": "would you like to try another maze?"
-        }
-    }
-
-    // Sends the response message
     callSendAPI(sender_psid, response)
-    callSendAPI(sender_psid, { 'text': `This is your current maze. You may respond with the coded solution, "quit", or "new maze"` })
+}
+
+// Handles messages events
+const handleMessage = (sender_psid, received_message, userInfo) => {
+
 }
 
 // Handles messaging_postbacks events
@@ -89,8 +83,7 @@ const handlePostback = (sender_psid, received_postback, userInfo) => {
     
     // Sends the response message
     callSendAPI(sender_psid, response)
-    callSendAPI(sender_psid, {'text': "This is your current maze:"})
-    callSendAPI(sender_psid, {'text': `You may respond with the coded solution, "quit", or "new maze"`})
+    callSendAPI(sender_psid, { 'text': `This is your current maze. You may respond with the coded solution, "quit", or "new maze"` })
 }
 
 // Sends response messages via the Send API
@@ -120,5 +113,5 @@ const callSendAPI = (sender_psid, response) => {
 module.exports = {
     handleMessage,
     handlePostback,
-    callSendAPI
+    handleGreetings
 }
