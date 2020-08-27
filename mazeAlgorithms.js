@@ -63,6 +63,17 @@ const randomStartAndEnd = (fourCorners) => {
     return [startNode, endNode]
 } 
 
+const checkSolution = (maze, start, end, solution) => {
+    // returns array of solution coordinates
+    // ['incomplete', [...]]
+    // ['walled', [...]]
+    // ['success', [...]]
+}
+
+const isSolutionValidCode = (maze, start, end, solution) => {
+    // returns false if solution is not "code"
+    // returns true if yes
+}
 
 module.exports = {
     generateMaze
