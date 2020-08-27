@@ -57,7 +57,7 @@ app.post('/webhook', (req, res) => {
                     if (userMessage.text.toLowerCase() === "quit") {
                         // deletes the session in db
                         deleteUserById(userID)
-                        return handleQuit(userID, userMessase, userInfo)
+                        return handleQuit(userID, userMessage, userInfo)
                     }
 
                     if (userMessage.text.toLowerCase() === "solution") {
