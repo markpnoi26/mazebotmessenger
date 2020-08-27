@@ -46,6 +46,12 @@ const handleMessage = (sender_psid, received_message, userInfo) => {
 
 }
 
+// when the user quits
+const handleQuit = (sender_psid, received_message, userInfo) => {
+    callSendAPI(sender_psid, {"text": "Thank you for trying out MazeBot, come back again soon!"})
+}
+
+
 // Handles messaging_postbacks events
 const handlePostback = (sender_psid, received_postback, userInfo) => {
     let responseMsg;
@@ -162,5 +168,6 @@ const callSendAPI = (sender_psid, response) => {
 module.exports = {
     handleMessage,
     handlePostback,
-    sendInitialGreetings
+    sendInitialGreetings,
+    handleQuit
 }
