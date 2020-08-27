@@ -86,8 +86,14 @@ const handlePostback = (sender_psid, received_postback, userInfo) => {
     } 
     
     // Sends the response message
-    callSendAPI(sender_psid, response)
     callSendAPI(sender_psid, { 'text': `This is your current maze. You may respond with the coded solution, "quit", or "new maze"` })
+        .then(() =>{
+            callSendAPI(sender_psid, response)
+        })
+        .catch((error) => {
+            console.log({error})
+        })
+    
 }
 
 // Sends response messages via the Send API
