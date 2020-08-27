@@ -34,6 +34,8 @@ const sendInitialGreetings = (sender_psid) => {
         'text': `Welcome to MazeBot - a small coding challenge maze solver. Mazebot generates a random maze based on difficulty and it is your job to solve this maze, by coding a solution into the messenger.\n\nHow Does it work?\n\nA sample maze:\n🐿️⬛⬛⬛🥜\n⬜⬜⬜⬜⬜\n⬜⬛⬛⬛⬜\n\nwalls = ⬛, path = ⬜, start = 🐿️, end =🥜\n\n The solution: "d, r, r, r, r, d" or "d, loop(r, 4), d"\n\ncode structure: u <up>, d <down>, l <left>, r <right>, loop(<u,d,l,r>, <repeat number>)\n\nIf the code has errors, the bot will notify you.\n\nIf your code hits a wall, or does not reach the target, a visual representation will be sent to you.\n\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<dir>, <repeat>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution.`
     }).then(() => {
         callSendAPI(sender_psid, response)
+    }).catch((error) => {
+        console.log({error})
     })
 }
 
