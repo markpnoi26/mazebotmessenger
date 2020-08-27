@@ -25,10 +25,9 @@ const generateMaze = (r, c) => {
         }
     }
 
-    const fourCorners = [[1,1], [1, colMax-2], [rowMax-2, 1], [rowMax-2, colMax-2]]
     dfsRecursive(1,1)
     
-    const startAndEndNodes = randomStartAndEnd(fourCorners)
+    const startAndEndNodes = randomStartAndEnd(visited)
 
     return [visited, startAndEndNodes]
 
