@@ -70,9 +70,9 @@ const checkSolution = (maze, start, end, solution) => {
     // ['success', [...]]
 }
 
-const isSolutionValidCode = (maze, start, end, solution) => {
-    // returns false if solution is not "code"
-    // returns true if yes
+const isSolutionValidCode = (maze, solution) => {
+    // returns false if solution is not "code" or maze is not a maze
+    // returns true if maze and solution are valid
 }
 
 module.exports = {
