@@ -3,7 +3,7 @@ const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 
 const 
     { getUserById, createNewUserWithId} = require('./stateDB.js'),
-    { handleMessage, handlePostback, handleGreetings } = require('./botResponse.js'),
+    { handleMessage, handlePostback, sendInitialGreetings } = require('./botResponse.js'),
     { generateMaze } = require('./mazeAlgorithms.js'),
     express = require('express'),
     bodyParser = require('body-parser'),
@@ -24,33 +24,33 @@ app.post('/webhook', (req, res) => {
 
         })
 
-        if (userMessage && userMessage.text === "start") {
-            handleGreetings(userID, userMessage)
-        }
-        // getUserById(userID)
-        //     .then(response => {
-        //         let userInfo = response.Item
-        //         // if user exists check the postback or message
-        //         if (userInfo) {
-        //             if (userMessage) return handleMessage(userID, userMessage, userInfo)
-        //             if (userPostback) return handlePostback(userID, userPostback, userInfo)
-        //         } else {
-        //             const [maze, startAndEnd] = generateMaze(11,9)
-        //             createNewUserWithId(userID, maze, startAndEnd[0], startAndEnd[1])
-        //             userInfo = {
-        //                 maze,
-        //                 user_id: userID, 
-        //                 start: startAndEnd[0], 
-        //                 end: startAndEnd[1],  
-        //                 solved: false
-        //             }
-        //             if (userMessage) return handleMessage(userID, userMessage, userInfo)
-        //             if (userPostback) return handlePostback(userID, userPostback, userInfo)
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
+        getUserById(userID)
+            .then(response => {
+                let userInfo = response.Item
+                if (userInfo && userPostback) {
+                    // if user exists check the postback
+                    // postback is from creating a maze only
+                    // create a maze based on postback paylood
+                    // update the db, send maze for solution
+                    console.log(userInfo, userPostback.payload)
+
+                } else if (userInfo && userMessage) {
+                    // if user exists check the message
+                    // check message if solution and solution is correct =>
+                    // check if message is "quit", "new maze", "solution" 
+                    // if none of those, ask if you want to restart again. => send the postback message start again
+                    console.log(userInfo, userMessage.text)
+                    
+                } else {
+                    // if user does not exist
+                    // create the user and present the postback welcome message
+                    createNewUserWithId(userID, [], [], [])
+                    sendInitialGreetings(userID)
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
         res.status(200).send('EVENT_RECEIVED')
     } else {
