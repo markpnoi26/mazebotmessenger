@@ -2,7 +2,7 @@ const generateMaze = (r, c) => {
     const colMax = c
     const rowMax = r
     const visited = new Array(rowMax)
-    const availableNodes = [[1,1]]
+    const availableNodes = []
     for (let row = 0; row<rowMax; row++) {
         visited[row] = new Array(colMax).fill(1)
     }
@@ -52,14 +52,16 @@ const shuffleDirections = (directions) => {
 
 }
 
-const randomStartAndEnd = (fourCorners) => {
-    const nodesLength = fourCorners.length
-    let startNode = fourCorners[Math.floor(Math.random()*nodesLength)]
-    let endNode = fourCorners[Math.floor(Math.random()*nodesLength)]
+const randomStartAndEnd = (nodeList) => {
+    const nodesLength = nodeList.length
+    let startNodeIdx = Math.floor(Math.random()*nodesLength)
+    let endNodeIdx = Math.floor(Math.random()*nodesLength)
 
-    while (startNode === endNode) {
-        endNode = fourCorners[Math.floor(Math.random() * nodesLength)]
+    while (startNodeIdx === endNodeIdx) {
+        endNodeIdx = Math.floor(Math.random() * nodesLength)
     }
+
+    const startNode = nodeList[startNodeIdx], endNode = nodeList[endNodeIdx]
     
     return [startNode, endNode]
 } 
