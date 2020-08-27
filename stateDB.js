@@ -54,8 +54,30 @@ let createNewUserWithId = (id, maze, start, end) => {
     })
 }
 
+let updateUserWithMaze = (id, maze, start, end) => {
+    var params = {
+        TableName: 'user-state',
+        Item: {
+            user_id: id,
+            maze: maze,
+            start: start,
+            end: end,
+            solved: false
+        }
+    }
+
+    dynamoDB.put(params, (err, data) => {
+        if (err) {
+            console.log('from-put', { err })
+        } else {
+            console.log('from-put', { data })
+        }
+    })
+}
+
 module.exports = {
     getUserById,
     createNewUserWithId,
-    deleteUserById
+    deleteUserById,
+    updateUserWithMaze
 }
