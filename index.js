@@ -30,7 +30,7 @@ app.post('/webhook', (req, res) => {
                 if (userInfo && userPostback) {
                     // if user exists check the postback
                     // postback is from creating a maze only
-                    // create a maze based on postback paylood
+                    // create a maze based on postback payload
                     // update the db, send maze for solution
                     console.log(userInfo, userPostback.payload)
                     const difficulty = {
