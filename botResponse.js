@@ -6,30 +6,34 @@ const sendInitialGreetings = (sender_psid) => {
     }
 
     const responsePostback = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Select Your Maze Difficulty",
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "Easy (5x5 maze)",
-                            "payload": "easy",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Medium (7x7 maze)",
-                            "payload": "medium",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Hard (9x9 maze)",
-                            "payload": "hard",
-                        }
-                    ],
-                }]
+
+        "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"Select your maze difficulty",
+                "buttons":[
+                    {
+                        "type": "postback",
+                        "title": "Easy (5x5 maze)",
+                        "payload": "easy",
+                    },
+                    {
+                        "type": "postback",
+                        "title": "Medium (7x7 maze)",
+                        "payload": "medium",
+                    },
+                    {
+                        "type": "postback",
+                        "title": "Hard (9x9 maze)",
+                        "payload": "hard",
+                    },
+                    {
+                        "type": "postback",
+                        "title": "Hard (7x11 maze)",
+                        "payload": "hardLong",
+                    }
+                ]
             }
         }
     }
@@ -157,7 +161,6 @@ const callSendAPI = (sender_psid, response) => {
         }, (err, res, body) => {
             if (!err) {
                 console.log('message sent!')
-                console.log(response)
                 resolve("success")
             } else {
                 console.error("Unable to send message:" + err);
