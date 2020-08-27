@@ -2,7 +2,7 @@
 const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 
 const 
-    { getUserById, createNewUserWithId, updateUserWithMaze, deleteUserById = require('./stateDB.js'),
+    { getUserById, createNewUserWithId, updateUserWithMaze, deleteUserById } = require('./stateDB.js'),
     { handleMessage, handlePostback, sendInitialGreetings } = require('./botResponse.js'),
     { generateMaze } = require('./mazeAlgorithms.js'),
     express = require('express'),
