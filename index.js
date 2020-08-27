@@ -3,7 +3,7 @@ const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 
 const 
     { getUserById, createNewUserWithId, updateUserWithMaze, deleteUserById } = require('./stateDB.js'),
-    { handleMessage, handlePostback, sendInitialGreetings } = require('./botResponse.js'),
+    { handleMessage, handlePostback, sendInitialGreetings, handleQuit } = require('./botResponse.js'),
     { generateMaze } = require('./mazeAlgorithms.js'),
     express = require('express'),
     bodyParser = require('body-parser'),
@@ -54,12 +54,19 @@ app.post('/webhook', (req, res) => {
                     // check message if solution and solution is correct =>
                     // check if message is "quit", "new maze", "solution" 
                     // if none of those, ask if you want to restart again. => send the postback message start again
-                    if (userMessage.text === "quit") {
+                    if (userMessage.text.downcase() === "quit") {
+                        // deletes the session in db
                         deleteUserById(userID)
+                        return handleQuit(userID, userMessase, userInfo)
+                    }
+
+                    if (userMessage.text.downcase() === "solution") {
+                        // && if solution is a valid solution
+                        return console.log("bot shows the solution to the code")
                     }
 
                 } else {
-                    // if user does not exist
+                    // if user does not exist, creates user session 
                     // create the user and present the postback welcome message
                     createNewUserWithId(userID, [], [], [])
                     sendInitialGreetings(userID)
