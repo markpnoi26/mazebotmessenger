@@ -24,6 +24,11 @@ const sendInitialGreetings = (sender_psid) => {
                             "type": "postback",
                             "title": "Hard (9x9 maze)",
                             "payload": "hard",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Hard (7x11 maze)",
+                            "payload": "hardLong",
                         }
                     ],
                 }]
@@ -46,7 +51,7 @@ const handleMessage = (sender_psid, received_message, userInfo) => {
 
 // Handles messaging_postbacks events
 const handlePostback = (sender_psid, received_postback, userInfo) => {
-    let response;
+    let responseMsg;
     const wallNode = "⬛"
     const openNode = "⬜"
     const start = "🐿️"
@@ -75,20 +80,59 @@ const handlePostback = (sender_psid, received_postback, userInfo) => {
     // Check if the message contains text
     if (userInfo.solved === false) {    
         // Create the payload for a basic text message
-        response = {
+        responseMsg = {
             "text": `${mazeString}`
             
         }
     }  else if (userInfo.solved === true) {
-        response = {
+        responseMsg = {
             "text": "would you like to try another maze?"
         }
     } 
+
+    // response postback to generate a new maze
+
+    responsePostback = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "Alternatively, generate a new maze.",
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "Easy (5x5 maze)",
+                            "payload": "easy",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Medium (7x7 maze)",
+                            "payload": "medium",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Hard (9x9 maze)",
+                            "payload": "hard",
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Hard (7x11 maze)",
+                            "payload": "hardLong",
+                        }
+                    ],
+                }]
+            }
+        }
+    }
     
     // Sends the response message
     callSendAPI(sender_psid, { 'text': `This is your current maze. You may respond with the coded solution, "quit", or "new maze"` })
         .then(() =>{
-            callSendAPI(sender_psid, response)
+            return callSendAPI(sender_psid, responseMsg)
+        })
+        .then(() => {
+            return callSendAPI(sender_psid, responsePostback)
         })
         .catch((error) => {
             console.log({error})
