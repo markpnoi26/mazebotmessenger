@@ -36,7 +36,8 @@ app.post('/webhook', (req, res) => {
                     const difficulty = {
                         easy: [7,7],
                         medium: [9,9],
-                        hard: [11,11]
+                        hard: [11,11],
+                        hardLong: [13, 9]
                     }
                     
                     const row = difficulty[userPostback.payload][0]
