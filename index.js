@@ -2,7 +2,7 @@
 const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 
 const 
-    { getUserById, createNewUserWithId, updateUserWithMaze} = require('./stateDB.js'),
+    { getUserById, createNewUserWithId, updateUserWithMaze, deleteUserById = require('./stateDB.js'),
     { handleMessage, handlePostback, sendInitialGreetings } = require('./botResponse.js'),
     { generateMaze } = require('./mazeAlgorithms.js'),
     express = require('express'),
@@ -54,7 +54,9 @@ app.post('/webhook', (req, res) => {
                     // check message if solution and solution is correct =>
                     // check if message is "quit", "new maze", "solution" 
                     // if none of those, ask if you want to restart again. => send the postback message start again
-                    console.log(userInfo, userMessage.text)
+                    if (userMessage.text === "quit") {
+                        deleteUserById(userID)
+                    }
 
                 } else {
                     // if user does not exist
