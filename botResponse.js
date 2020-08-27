@@ -41,6 +41,7 @@ const sendInitialGreetings = (sender_psid) => {
 
     callSendAPI(sender_psid, responseMsg)
         .then(() => {
+            console.log("Why isnt it showing in my messenger?")
             callSendAPI(sender_psid, responsePostback)
         }).catch((error) => {
             console.log({error})
