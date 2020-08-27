@@ -11,7 +11,7 @@ const sendInitialGreetings = (sender_psid) => {
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"Select your maze difficulty",
+                "text":"Select your maze difficulty.",
                 "buttons":[
                     {
                         "type": "postback",
@@ -27,11 +27,6 @@ const sendInitialGreetings = (sender_psid) => {
                         "type": "postback",
                         "title": "Hard (9x9 maze)",
                         "payload": "hard",
-                    },
-                    {
-                        "type": "postback",
-                        "title": "Hard (7x11 maze)",
-                        "payload": "hardLong",
                     }
                 ]
             }
@@ -40,7 +35,6 @@ const sendInitialGreetings = (sender_psid) => {
 
     callSendAPI(sender_psid, responseMsg)
         .then(() => {
-            console.log("Why isnt it showing in my messenger?")
             callSendAPI(sender_psid, responsePostback)
         }).catch((error) => {
             console.log({error})
@@ -96,35 +90,29 @@ const handlePostback = (sender_psid, received_postback, userInfo) => {
     // response postback to generate a new maze
 
     const responsePostback = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Alternatively, generate a new maze.",
-                    "buttons": [
-                        {
-                            "type": "postback",
-                            "title": "Easy (5x5 maze)",
-                            "payload": "easy",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Medium (7x7 maze)",
-                            "payload": "medium",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Hard (9x9 maze)",
-                            "payload": "hard",
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Hard (7x11 maze)",
-                            "payload": "hardLong",
-                        }
-                    ],
-                }]
+        
+        "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"Alternatively select a new maze by difficulty.",
+                "buttons":[
+                    {
+                        "type": "postback",
+                        "title": "Easy (5x5 maze)",
+                        "payload": "easy",
+                    },
+                    {
+                        "type": "postback",
+                        "title": "Medium (7x7 maze)",
+                        "payload": "medium",
+                    },
+                    {
+                        "type": "postback",
+                        "title": "Hard (9x9 maze)",
+                        "payload": "hard",
+                    }
+                ]
             }
         }
     }
