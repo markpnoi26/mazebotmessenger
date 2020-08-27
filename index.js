@@ -42,10 +42,10 @@ app.post('/webhook', (req, res) => {
                     const row = difficulty[userPostback.payload][0]
                     const col = difficulty[userPostback.payload][1]
                     const [maze, startAndEnd] = generateMaze(row, col)
-                    updateUserWithMaze(userID, maze, startAndEnd[0], startAndEnd[1])
                     userInfo.maze = maze
                     userInfo.start = startAndEnd[0]
                     userInfo.end = startAndEnd[1]
+                    updateUserWithMaze(userID, maze, startAndEnd[0], startAndEnd[1])
                     handlePostback(userID, userPostback, userInfo)
 
                 } else if (userInfo && userMessage) {
