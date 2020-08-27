@@ -2,7 +2,7 @@ const generateMaze = (r, c) => {
     const colMax = c
     const rowMax = r
     const visited = new Array(rowMax)
-
+    const availableNodes = [[1,1]]
     for (let row = 0; row<rowMax; row++) {
         visited[row] = new Array(colMax).fill(1)
     }
@@ -20,6 +20,8 @@ const generateMaze = (r, c) => {
                 const midRow = (row + dRow) / 2
                 const midCol = (col + dCol) / 2
                 visited[midRow][midCol] = 0
+                availableNodes.push([row, col])
+                availableNodes.push([midRow, midCol])
                 dfsRecursive(dRow, dCol)
             } 
         }
@@ -27,7 +29,7 @@ const generateMaze = (r, c) => {
 
     dfsRecursive(1,1)
     
-    const startAndEndNodes = randomStartAndEnd(visited)
+    const startAndEndNodes = randomStartAndEnd(availableNodes)
 
     return [visited, startAndEndNodes]
 
@@ -77,3 +79,5 @@ const isSolutionValidCode = (maze, solution) => {
 module.exports = {
     generateMaze
 }
+
+console.log(generateMaze(5,5))
