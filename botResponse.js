@@ -112,7 +112,7 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
     let responseMsg, explanationMsg, pathTaken;
     const wallNode = "⬛"
     const openNode = "⬜"
-    const path = "✅"
+    const path = "🟩"
     const pathEnd = "❌"
     const start = "🐿️"
     const end = "🥜"
