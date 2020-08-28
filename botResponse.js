@@ -144,10 +144,10 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
                     mazeString+=start
                 } else if (i === userInfo.end[0] && j === userInfo.end[1]) {
                     mazeString+=end
-                } else if (i === pathTaken[startPath][0] && j === pathTaken[startPath][1] && startPath !== pathEndIdx) {
+                } else if (startPath <= pathEndIdx && i === pathTaken[startPath][0] && j === pathTaken[startPath][1] && startPath !== pathEndIdx) {
                     mazeString+=path
                     startPath++
-                } else if (i === pathTaken[startPath][0] && j === pathTaken[startPath][1] && startPath === pathEndIdx) {
+                } else if (startPath <= pathEndIdx && i === pathTaken[startPath][0] && j === pathTaken[startPath][1] && startPath === pathEndIdx) {
                     mazeString+=pathEnd
                     startPath++
                 } else {
