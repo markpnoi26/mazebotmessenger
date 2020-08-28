@@ -112,7 +112,7 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
     let responseMsg, explanationMsg, pathTaken;
     const wallNode = "⬛"
     const openNode = "⬜"
-    const path = "🔳"
+    const path = "✅"
     const pathEnd = "❌"
     const start = "🐿️"
     const end = "🥜"
@@ -164,7 +164,7 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
 
     callSendAPI(sender_psid, responseMsg)
         .then(() => {
-            callSendAPI(sender_psid, explanationMsg)
+            callSendAPI(sender_psid, {"text":explanationMsg})
         })
         .catch((error) => console.log({error}))
 
