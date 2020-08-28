@@ -62,7 +62,7 @@ app.post('/webhook', (req, res) => {
                         // && if solution is a valid solution
                         return console.log("bot shows the solution to the code")
                     } else if (isSolutionValid(userInfo.maze, userMessage.text.toLowerCase())) {
-
+                        return console.log("the message is a valid solution!!")
                     } else {
                         return handleGenericMessage(userID, userMessage, userInfo)
                     }
