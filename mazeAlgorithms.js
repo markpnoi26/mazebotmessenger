@@ -73,13 +73,15 @@ const checkSolution = (maze, start, end, solution) => {
     // ['success', [...]]
 }
 
-const isSolutionValidCode = (maze, solution) => {
+const isSolutionValid = (maze, solution) => {
     // returns false if solution is not "code" or maze is not a maze
     // returns true if maze and solution are valid
+    return false
 }
 
 module.exports = {
-    generateMaze
+    generateMaze,
+    isSolutionValid
 }
 
 console.log(generateMaze(5,5))
