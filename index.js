@@ -4,7 +4,7 @@ const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 const 
     { getUserById, createNewUserWithId, updateUserWithMaze, deleteUserById } = require('./stateDB.js'),
     { handleGenericMessage, handlePostback, sendInitialGreetings, handleMazeSelection, handleQuit } = require('./botResponse.js'),
-    { generateMaze, isSolutionValid } = require('./mazeAlgorithms.js'),
+    { generateMaze, isSolutionValid, destructureSolution, checkSolution } = require('./mazeAlgorithms.js'),
     express = require('express'),
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json())
@@ -62,6 +62,9 @@ app.post('/webhook', (req, res) => {
                     } else if (userMessage.text.toLowerCase() === "solution" && userInfo.maze.length) {
                         return console.log("bot shows the solution to the code")
                     } else if (isSolutionValid(userInfo.maze, userMessage.text.toLowerCase())) {
+                        const destructuredSolution = destructureSolution(userMessage.text.toLowerCase())
+
+                        console.log(destructuredSolution)
                         return console.log("the message is a valid solution!!")
                     } else {
                         return handleGenericMessage(userID, userMessage, userInfo)
