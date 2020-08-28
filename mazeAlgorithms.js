@@ -94,14 +94,15 @@ const destructureSolution = (solution) => {
     const set = new Set(["d", "u", "l", "r"])
     const destructuredSolution = []
     for (let element of solution) {
-        if (!set.has(element)) {
-            const loopArr = element.substring(5, element.length-1).split("-")
+        const cleanedElement = element.replace(/\s/g, "")
+        if (!set.has(cleanedElement)) {
+            const loopArr = cleanedElement.substring(5, cleanedElement.length-1).split("-")
             const loopRep = parseInt(loopArr[0], 10)
             for (let i = 0; i<loopRep; i++) {
                 destructuredSolution.push(loopArr[1])
             }
         } else {
-            destructuredSolution.push(element)
+            destructuredSolution.push(cleanedElement)
         }
     }
     return destructuredSolution
@@ -154,19 +155,21 @@ module.exports = {
 }
 
 
-const maze = [
-      [ 1, 1, 1, 1, 1 ],
-      [ 1, 0, 1, 0, 1 ],
-      [ 1, 0, 1, 0, 1 ],
-      [ 1, 0, 0, 0, 1 ],
-      [ 1, 1, 1, 1, 1 ]
-    ],
-    start = [ 1, 1 ], end = [ 1, 3 ] 
+// const maze = [
+//       [ 1, 1, 1, 1, 1 ],
+//       [ 1, 0, 1, 0, 1 ],
+//       [ 1, 0, 1, 0, 1 ],
+//       [ 1, 0, 0, 0, 1 ],
+//       [ 1, 1, 1, 1, 1 ]
+//     ],
+//     start = [ 1, 1 ], end = [ 1, 3 ] 
 
-const answer = checkSolution(maze, start, end, ["d", "d", "r", "r", "u", "u"])
+// const answer = checkSolution(maze, start, end, ["d", "d", "r", "r", "u", "u"])
 
-console.log(answer)
+// console.log(answer)
 
-const answer2 = destructureSolution(["loop(4-r)", "d"])
+// const answer2 = destructureSolution(["loop(4-r)", "d"])
 
-console.log(answer2)
+// console.log(answer2)
+
+// isSolutionValid("U,u,u,u,loop(4-r), loop(6-d), l,l,d,d,loop(4-r),u,u")
