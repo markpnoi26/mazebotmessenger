@@ -146,8 +146,10 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
                     mazeString+=end
                 } else if (i === pathTaken[startPath][0] && j === pathTaken[startPath][1] && startPath !== pathEndIdx) {
                     mazeString+=path
+                    startPath++
                 } else if (i === pathTaken[startPath][0] && j === pathTaken[startPath][1] && startPath === pathEndIdx) {
                     mazeString+=pathEnd
+                    startPath++
                 } else {
                     mazeString+=openNode
                 }
