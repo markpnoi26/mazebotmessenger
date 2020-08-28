@@ -5,7 +5,7 @@ const responsePostback = {
         "type": "template",
         "payload": {
             "template_type": "button",
-            "text": "Maze Selection w/ random Start and End",
+            "text": "Maze Selection:",
             "buttons": [
                 {
                     "type": "postback",
