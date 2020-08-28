@@ -76,7 +76,42 @@ const checkSolution = (maze, start, end, solution) => {
 const isSolutionValid = (maze, solution) => {
     // returns false if solution is not "code" or maze is not a maze
     // returns true if maze and solution are valid
-    return false
+    if (!maze.length || !solution.length) return false
+    
+    let solutionLowerCase = solution.toLowerCase()
+    let cleanString = solutionLowerCase.replace(/\s/g, "")
+    const solutionArr = cleanString.split(",")
+
+    console.log(solutionArr)
+
+    for (let element of solutionArr) {
+        const set = new Set(["d", "u", "l", "r"])
+        if (!set.has(element) && !isValidLoop(element)) return false
+
+    }
+
+    return true
+}
+
+const isValidLoop = loop => {
+    const set = new Set(["d", "u", "l", "r"])
+    if (loop.substring(0,4) !== "loop") return false
+    if (loop[4] !== "(" && loop[loop.length-1] !== ")") return false
+    let loopCondition = loop.substring(5, loop.length - 1)
+    const loopArr = loopCondition.split("-")
+    if (loopArr.length > 2) return false
+    if (!isStringValidNum(loopArr[0])) return false
+    if (!set.has(loopArr[1])) return false
+
+    return true
+}
+
+const isStringValidNum = string => {
+    const set = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
+    for (let i=0;i<string.length; i++) {
+        if (!set.has(string[i])) return false
+    }
+    return true
 }
 
 module.exports = {
@@ -84,4 +119,8 @@ module.exports = {
     isSolutionValid
 }
 
-console.log(generateMaze(5,5))
+//test
+// let sampleMaze = generateMaze(5,5)
+// console.log(isSolutionValid(sampleMaze[0], "D,d ,d,d,       d,l oop (1ilhiluh - d)"))
+
+// console.log(isValidLoop("loop(3[3-d)"))
