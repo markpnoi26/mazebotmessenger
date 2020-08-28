@@ -194,7 +194,6 @@ const callSendAPI = (sender_psid, response) => {
         "recipient": {
           "id": sender_psid
         },
-        "sender_action":"typing_on",
         "message": response
       }
 
