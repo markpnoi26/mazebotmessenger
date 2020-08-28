@@ -133,7 +133,8 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
     }
 
     let mazeString = ""
-    let startPath = 0, pathEndIdx = pathTaken.length-1
+    let lastValidPosition = pathTaken[pathTaken.length-1]
+    const paths = new Set(pathTaken.map(element => JSON.stringify(element)))
 
     for (let i=1; i<maze.length-1; i++) {
         for (let j=1;j<maze[i].length-1; j++) {
@@ -144,12 +145,10 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
                     mazeString+=start
                 } else if (i === userInfo.end[0] && j === userInfo.end[1]) {
                     mazeString+=end
-                } else if (startPath <= pathEndIdx && i === pathTaken[startPath][0] && j === pathTaken[startPath][1] && startPath !== pathEndIdx) {
+                } else if (paths.has(JSON.stringify([i,j])) && i === lastValidPosition[0] && j !== lastValidPosition[1]) {
                     mazeString+=path
-                    startPath++
-                } else if (startPath <= pathEndIdx && i === pathTaken[startPath][0] && j === pathTaken[startPath][1] && startPath === pathEndIdx) {
+                } else if (paths.has(JSON.stringify([i,j])) && i === lastValidPosition[0] && j === lastValidPosition[1]) {
                     mazeString+=pathEnd
-                    startPath++
                 } else {
                     mazeString+=openNode
                 }
