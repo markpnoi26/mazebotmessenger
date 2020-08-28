@@ -43,7 +43,7 @@ const sendInitialGreetings = (sender_psid) => {
 // Handles messages events
 const handleGenericMessage = (sender_psid, received_message, userInfo) => {
     
-    callSendAPI(sender_psid, {'text': `Your response is not a valid code, or you have not selected a maze to solve yet, to select a maze, send "maze" or scroll up and select a maze from the options given.`})
+    callSendAPI(sender_psid, {'text': `Either your response is not a valid code, or you have not selected a maze to solve yet. To select a maze, send "maze" or scroll up and select a maze from the options given. If you have a maze already, make sure you have comma seperated operations, and check for invalid operations in your syntax.`})
         .catch((error) => {
             console.log(error)
         })
@@ -167,8 +167,11 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
             return callSendAPI(sender_psid, {"text":explanationMsg})
         })
         .then(() => {
-            if (solutionResponse.success !== undefined) return callSendAPI(sender_psid, {'text': `Solve another maze? type "maze", Otherwise, you can optimize your solution by using loops. You may also "quit" at any time.`})
+            if (solutionResponse.success !== undefined) return callSendAPI(sender_psid, {'text': `Try another another maze? Otherwise, you can optimize your solution by using loops. You may also "quit" at any time.`})
             if (solutionResponse.failure !== undefined || solutionResponse.incomplete) return callSendAPI(sender_psid, {"text": received_message.text})
+        })
+        .then(() => {
+            if (solutionResponse.success !== undefined) return callSendAPI(sender_psid, responsePostback)
         })
         .catch((error) => console.log({error}))
 
