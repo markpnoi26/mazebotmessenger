@@ -62,10 +62,10 @@ app.post('/webhook', (req, res) => {
                     } else if (userMessage.text.toLowerCase() === "solution" && userInfo.maze.length) {
                         return console.log("bot shows the solution to the code")
                     } else if (isSolutionValid(userInfo.maze, userMessage.text.toLowerCase())) {
+                        const maze = userInfo.maze, start = userInfo.start, end = userInfo.end
                         const destructuredSolution = destructureSolution(userMessage.text.toLowerCase())
-
-                        console.log(destructuredSolution)
-                        return console.log("the message is a valid solution!!")
+                        const response = checkSolution(maze, start, end, destructuredSolution)
+                        return console.log("the message is a valid solution!!", response)
                     } else {
                         return handleGenericMessage(userID, userMessage, userInfo)
                     }
