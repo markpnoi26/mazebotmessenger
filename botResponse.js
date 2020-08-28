@@ -5,21 +5,21 @@ const responsePostback = {
         "type": "template",
         "payload": {
             "template_type": "button",
-            "text": "Select your maze difficulty.",
+            "text": "Maze Selection w/ random Start and End",
             "buttons": [
                 {
                     "type": "postback",
-                    "title": "Easy (5x5 maze)",
+                    "title": "5x5 maze",
                     "payload": "easy",
                 },
                 {
                     "type": "postback",
-                    "title": "Medium (7x7 maze)",
+                    "title": "7x7 maze",
                     "payload": "medium",
                 },
                 {
                     "type": "postback",
-                    "title": "Hard (9x9 maze)",
+                    "title": "9x9 maze",
                     "payload": "hard",
                 }
             ]
@@ -32,33 +32,6 @@ const sendInitialGreetings = (sender_psid) => {
         'text': `Welcome to MazeBot - a small coding challenge maze solver. Mazebot generates a random maze based on difficulty and it is your job to solve this maze, by coding a solution into the messenger.\n\nHow Does it work?\n\nA sample maze:\n🐿️⬛⬛⬛🥜\n⬜⬜⬜⬜⬜\n⬜⬛⬛⬛⬜\n\nwalls = ⬛, path = ⬜, start = 🐿️, end =🥜\n\n The solution: "d, r, r, r, r, d" or "d, loop(r, 4), d"\n\ncode structure: u <up>, d <down>, l <left>, r <right>, loop(<u,d,l,r>, <repeat number>)\n\nIf the code has errors, the bot will notify you.\n\nIf your code hits a wall, or does not reach the target, a visual representation will be sent to you.\n\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<dir>, <repeat>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution.`
     }
 
-    // const responsePostback = {
-
-    //     "attachment":{
-    //         "type":"template",
-    //         "payload":{
-    //             "template_type":"button",
-    //             "text":"Select your maze difficulty.",
-    //             "buttons":[
-    //                 {
-    //                     "type": "postback",
-    //                     "title": "Easy (5x5 maze)",
-    //                     "payload": "easy",
-    //                 },
-    //                 {
-    //                     "type": "postback",
-    //                     "title": "Medium (7x7 maze)",
-    //                     "payload": "medium",
-    //                 },
-    //                 {
-    //                     "type": "postback",
-    //                     "title": "Hard (9x9 maze)",
-    //                     "payload": "hard",
-    //                 }
-    //             ]
-    //         }
-    //     }
-    // }
 
     callSendAPI(sender_psid, responseMsg)
         .then(() => {
@@ -70,33 +43,6 @@ const sendInitialGreetings = (sender_psid) => {
 
 // Handles messages events
 const handleGenericMessage = (sender_psid, received_message, userInfo) => {
-    // const responsePostback = {
-
-    //     "attachment": {
-    //         "type": "template",
-    //         "payload": {
-    //             "template_type": "button",
-    //             "text": "Select your maze difficulty.",
-    //             "buttons": [
-    //                 {
-    //                     "type": "postback",
-    //                     "title": "Easy (5x5 maze)",
-    //                     "payload": "easy",
-    //                 },
-    //                 {
-    //                     "type": "postback",
-    //                     "title": "Medium (7x7 maze)",
-    //                     "payload": "medium",
-    //                 },
-    //                 {
-    //                     "type": "postback",
-    //                     "title": "Hard (9x9 maze)",
-    //                     "payload": "hard",
-    //                 }
-    //             ]
-    //         }
-    //     }
-    // }
     
     callSendAPI(sender_psid, {'text': "Your response is not a valid code, or you have not selected a maze to solve yet"})
         .then(()=> {
@@ -153,39 +99,9 @@ const handlePostback = (sender_psid, received_postback, userInfo) => {
             "text": "would you like to try another maze?"
         }
     } 
-
-    // response postback to generate a new maze
-
-    // const responsePostback = {
-        
-    //     "attachment":{
-    //         "type":"template",
-    //         "payload":{
-    //             "template_type":"button",
-    //             "text":"Alternatively select a new maze by difficulty.",
-    //             "buttons":[
-    //                 {
-    //                     "type": "postback",
-    //                     "title": "Easy (5x5 maze)",
-    //                     "payload": "easy",
-    //                 },
-    //                 {
-    //                     "type": "postback",
-    //                     "title": "Medium (7x7 maze)",
-    //                     "payload": "medium",
-    //                 },
-    //                 {
-    //                     "type": "postback",
-    //                     "title": "Hard (9x9 maze)",
-    //                     "payload": "hard",
-    //                 }
-    //             ]
-    //         }
-    //     }
-    // }
     
     // Sends the response message
-    callSendAPI(sender_psid, { 'text': `This is your current maze. You may respond with the coded solution, "quit", or "new maze"` })
+    callSendAPI(sender_psid, { 'text': `This is your current maze. You may send "quit" at any time to end your current maze session. Alternatively, you may select a new maze.` })
         .then(() =>{
             return callSendAPI(sender_psid, responseMsg)
         })
