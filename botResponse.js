@@ -145,7 +145,7 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
                     mazeString+=start
                 } else if (i === userInfo.end[0] && j === userInfo.end[1]) {
                     mazeString+=end
-                } else if (paths.has(JSON.stringify([i,j])) && i === lastValidPosition[0] && j !== lastValidPosition[1]) {
+                } else if (paths.has(JSON.stringify([i,j])) && i !== lastValidPosition[0] && j !== lastValidPosition[1]) {
                     mazeString+=path
                 } else if (paths.has(JSON.stringify([i,j])) && i === lastValidPosition[0] && j === lastValidPosition[1]) {
                     mazeString+=pathEnd
