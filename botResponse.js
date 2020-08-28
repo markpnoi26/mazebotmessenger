@@ -163,6 +163,10 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
     }
 
     callSendAPI(sender_psid, responseMsg)
+        .then(() => {
+            callSendAPI(sender_psid, explanationMsg)
+        })
+        .catch((error) => console.log({error}))
 
 }
 
