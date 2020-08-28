@@ -66,11 +66,45 @@ const randomStartAndEnd = (nodeList) => {
     return [startNode, endNode]
 } 
 
-const checkSolution = (maze, start, end, solution) => {
-    // returns array of solution coordinates
-    // ['incomplete', [...]]
-    // ['walled', [...]]
-    // ['success', [...]]
+const checkSolution = (maze, start, end, destructuredSolution) => {
+    const directions = {
+        "u": [-1, 0],
+        "d": [1, 0],
+        "r": [0, 1],
+        "l": [0, -1]
+    }
+    let lastValidPosition = start
+    const pathTaken = []
+    for (let dir of destructuredSolution) {
+        const [dRow, dCol] = directions[dir]
+        const nextRow = lastValidPosition[0] + dRow
+        const nextCol = lastValidPosition[1] + dCol
+
+        if (maze[nextRow][nextCol] === 0) {
+            lastValidPosition = [nextRow, nextCol]
+            pathTaken.push([nextRow, nextCol])
+        } else {
+            return {'failure': pathTaken}
+        }
+    }
+    return (lastValidPosition[0] === end[0] && lastValidPosition[1] === end[1])? {'success': pathTaken} : {'incomplete': pathTaken}
+}
+
+const destructureSolution = (solution) => {
+    const set = new Set(["d", "u", "l", "r"])
+    const destructuredSolution = []
+    for (let element of solution) {
+        if (!set.has(element)) {
+            const loopArr = element.substring(5, element.length-1).split("-")
+            const loopRep = parseInt(loopArr[0], 10)
+            for (let i = 0; i<loopRep; i++) {
+                destructuredSolution.push(loopArr[1])
+            }
+        } else {
+            destructuredSolution.push(element)
+        }
+    }
+    return destructuredSolution
 }
 
 const isSolutionValid = (maze, solution) => {
@@ -81,11 +115,9 @@ const isSolutionValid = (maze, solution) => {
     let solutionLowerCase = solution.toLowerCase()
     let cleanString = solutionLowerCase.replace(/\s/g, "")
     const solutionArr = cleanString.split(",")
-
-    console.log(solutionArr)
+    const set = new Set(["d", "u", "l", "r"])
 
     for (let element of solutionArr) {
-        const set = new Set(["d", "u", "l", "r"])
         if (!set.has(element) && !isValidLoop(element)) return false
 
     }
@@ -116,11 +148,21 @@ const isStringValidNum = string => {
 
 module.exports = {
     generateMaze,
-    isSolutionValid
+    isSolutionValid,
+    destructureSolution,
+    checkSolution
 }
 
-//test
-// let sampleMaze = generateMaze(5,5)
-// console.log(isSolutionValid(sampleMaze[0], "D,d ,d,d,       d,l oop (1ilhiluh - d)"))
 
-// console.log(isValidLoop("loop(3[3-d)"))
+// const maze = [
+//       [ 1, 1, 1, 1, 1 ],
+//       [ 1, 0, 1, 0, 1 ],
+//       [ 1, 0, 1, 0, 1 ],
+//       [ 1, 0, 0, 0, 1 ],
+//       [ 1, 1, 1, 1, 1 ]
+//     ],
+//     start = [ 1, 1 ], end = [ 1, 3 ] 
+
+// const answer = checkSolution(maze, start, end, ["d", "d", "r", "r", "u", "u"])
+
+// console.log(answer)
