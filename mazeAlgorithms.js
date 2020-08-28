@@ -154,15 +154,19 @@ module.exports = {
 }
 
 
-// const maze = [
-//       [ 1, 1, 1, 1, 1 ],
-//       [ 1, 0, 1, 0, 1 ],
-//       [ 1, 0, 1, 0, 1 ],
-//       [ 1, 0, 0, 0, 1 ],
-//       [ 1, 1, 1, 1, 1 ]
-//     ],
-//     start = [ 1, 1 ], end = [ 1, 3 ] 
+const maze = [
+      [ 1, 1, 1, 1, 1 ],
+      [ 1, 0, 1, 0, 1 ],
+      [ 1, 0, 1, 0, 1 ],
+      [ 1, 0, 0, 0, 1 ],
+      [ 1, 1, 1, 1, 1 ]
+    ],
+    start = [ 1, 1 ], end = [ 1, 3 ] 
 
-// const answer = checkSolution(maze, start, end, ["d", "d", "r", "r", "u", "u"])
+const answer = checkSolution(maze, start, end, ["d", "d", "r", "r", "u", "u"])
 
-// console.log(answer)
+console.log(answer)
+
+const answer2 = destructureSolution(["loop(4-r)", "d"])
+
+console.log(answer2)

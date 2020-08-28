@@ -64,6 +64,7 @@ app.post('/webhook', (req, res) => {
                     } else if (isSolutionValid(userInfo.maze, userMessage.text.toLowerCase())) {
                         const maze = userInfo.maze, start = userInfo.start, end = userInfo.end
                         const destructuredSolution = destructureSolution(userMessage.text.toLowerCase())
+                        console.log(destructuredSolution)
                         const response = checkSolution(maze, start, end, destructuredSolution)
                         console.log(response)
                         return handleSolutionResponse(userID, userMessage, userInfo, response)
