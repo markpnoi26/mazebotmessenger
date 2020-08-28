@@ -65,6 +65,7 @@ app.post('/webhook', (req, res) => {
                         const maze = userInfo.maze, start = userInfo.start, end = userInfo.end
                         const destructuredSolution = destructureSolution(userMessage.text.toLowerCase())
                         const response = checkSolution(maze, start, end, destructuredSolution)
+                        console.log(response)
                         return handleSolutionResponse(userID, userMessage, userInfo, response)
                     } else {
                         return handleGenericMessage(userID, userMessage, userInfo)
