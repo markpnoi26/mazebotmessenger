@@ -164,21 +164,11 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
 
     callSendAPI(sender_psid, responseMsg)
         .then(() => {
-            callSendAPI(sender_psid, {"text":explanationMsg})
-            return solutionResponse
+            return callSendAPI(sender_psid, {"text":explanationMsg})
         })
-        .then((data) => {
-            if (data.success !== undefined) return callSendAPI(sender_psid, {'text': `Solve another maze? type "maze", otherwise, you can optimize your solution by typing "maze"`})
-            if (data.failure !== undefined || data.incomplete) return callSendAPI(sender_psid, {
-                                                            "text": "Your previous code:",
-                                                            "quick_replies":[
-                                                                {
-                                                                    "content_type":"text",
-                                                                    "title": received_message.text,
-                                                                    "payload":"<POSTBACK_PAYLOAD>",
-                                                                }
-                                                            ]
-  })
+        .then(() => {
+            if (solutionResponse.success !== undefined) return callSendAPI(sender_psid, {'text': `Solve another maze? type "maze", otherwise, you can optimize your solution by typing "maze"`})
+            if (solutionResponse.failure !== undefined || solutionResponse.incomplete) return callSendAPI(sender_psid, {"text": received_message.text})
         })
         .catch((error) => console.log({error}))
 
