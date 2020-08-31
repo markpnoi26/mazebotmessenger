@@ -1,56 +1,35 @@
 const request = require('request');
 
 const responsePostback = {
-    "text": "Select a Maze:",
-    "quick_replies": [
-        {
-            "content_type": "text",
-            "title": "5x5 maze",
-            "payload": "easy",
-        },
-        {
-            "content_type": "text",
-            "title": "7x7 maze",
-            "payload": "medium",
-        },
-        {
-            "content_type": "text",
-            "title": "9x9 maze",
-            "payload": "hard",
+    "attachment": {
+        "type": "template",
+        "payload": {
+            "template_type": "button",
+            "text": "Maze Selection:",
+            "buttons": [
+                {
+                    "type": "postback",
+                    "title": "5x5 maze",
+                    "payload": "easy",
+                },
+                {
+                    "type": "postback",
+                    "title": "7x7 maze",
+                    "payload": "medium",
+                },
+                {
+                    "type": "postback",
+                    "title": "9x9 maze",
+                    "payload": "hard",
+                }
+            ]
         }
-    ]
+    }
 }
-
-// const responsePostback = {
-//     "attachment": {
-//         "type": "template",
-//         "payload": {
-//             "template_type": "button",
-//             "text": "Maze Selection:",
-//             "buttons": [
-//                 {
-//                     "type": "postback",
-//                     "title": "5x5 maze",
-//                     "payload": "easy",
-//                 },
-//                 {
-//                     "type": "postback",
-//                     "title": "7x7 maze",
-//                     "payload": "medium",
-//                 },
-//                 {
-//                     "type": "postback",
-//                     "title": "9x9 maze",
-//                     "payload": "hard",
-//                 }
-//             ]
-//         }
-//     }
-// }
 
 const sendInitialGreetings = (sender_psid) => {
     const responseMsg = {
-        'text': `Welcome to MazeBot - a small coding challenge maze solver. Mazebot generates a random maze based on difficulty and it is your job to solve this maze, by coding a solution into the messenger.\n\nHow Does it work?\n\nA sample maze:\n🐿️⬛⬛⬛🥜\n⬜⬜⬜⬜⬜\n⬜⬛⬛⬛⬜\n\nwalls = ⬛, path = ⬜, start = 🐿️, end =🥜\n\n The solution: "d, r, r, r, r, u" or "d, loop(4-r), u"\n\ncode structure: u <up>, d <down>, l <left>, r <right>, loop(<repeat number>-<u,d,l,r>)\n\nIf the code has errors, the bot will notify you.\n\nIf your code hits a wall, or does not reach the target, a visual representation will be sent to you.\n\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<repeat>-<dir>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution.`
+        'text': `Welcome to MazeBot - a small coding challenge maze solver. Mazebot generates a random maze based on the size you select and it is your job to solve this maze, by coding a solution into the messenger.\n\nHow Does it work?\n\nA sample maze:\n🐿️⬛⬛⬛🥜\n⬜⬜⬜⬜⬜\n⬜⬛⬛⬛⬜\n\nwalls = ⬛, path = ⬜, start = 🐿️, end =🥜\n\n The solution: "d, r, r, r, r, u" or "d, loop(4-r), u"\n\ncode structure: u <up>, d <down>, l <left>, r <right>, loop(<repeat number>-<u,d,l,r>)\n\nIf the code has errors, the bot will notify you.\n\nIf your code hits a wall, or does not reach the target, a visual representation will be sent to you.\n\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<repeat>-<dir>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution.`
     }
 
     callSendAPI(sender_psid, responseMsg)
