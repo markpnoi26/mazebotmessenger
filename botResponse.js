@@ -9,7 +9,7 @@ const responsePostback = {
             "buttons": [
                 {
                     "type": "postback",
-                    "title": "5x5 maze",
+                    "title": "5x11 maze",
                     "payload": "easy",
                 },
                 {
