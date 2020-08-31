@@ -22,7 +22,7 @@ const getUserById = (id) => {
 
 }
 
-let deleteUserById = (id) => {
+const deleteUserById = (id) => {
     var params = {
         TableName: 'user-state',
         Key: {
@@ -33,7 +33,7 @@ let deleteUserById = (id) => {
     return dynamoDB.delete(params).promise()
 }
 
-let createNewUserWithId = (id, maze, start, end) => {
+const createNewUserWithId = (id, maze, start, end) => {
     var params = {
         TableName: 'user-state',
         Item: {
@@ -54,7 +54,7 @@ let createNewUserWithId = (id, maze, start, end) => {
     })
 }
 
-let updateUserWithMaze = (id, maze, start, end) => {
+const updateUserWithMaze = (id, maze, start, end) => {
     var params = {
         TableName: 'user-state',
         Item: {
