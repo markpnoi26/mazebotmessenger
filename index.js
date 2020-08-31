@@ -34,8 +34,8 @@ app.post('/webhook', (req, res) => {
                     // update the db, send maze for solution
                     const difficulty = {
                         easy: [13,7],
-                        medium: [9,9],
-                        hard: [11,11]
+                        medium: [13,9],
+                        hard: [13,11]
                     }
                     
                     const row = difficulty[userPostback.payload][0]

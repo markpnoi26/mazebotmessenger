@@ -14,12 +14,12 @@ const responsePostback = {
                 },
                 {
                     "type": "postback",
-                    "title": "7x7 maze",
+                    "title": "7x11 maze",
                     "payload": "medium",
                 },
                 {
                     "type": "postback",
-                    "title": "9x9 maze",
+                    "title": "9x11 maze",
                     "payload": "hard",
                 }
             ]
