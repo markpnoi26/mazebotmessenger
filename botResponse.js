@@ -4,21 +4,20 @@ const responsePostback = {
     "attachment": {
         "type": "template",
         "payload": {
-            "template_type": "button",
             "text": "Maze Selection:",
-            "buttons": [
+            "quick_replies": [
                 {
-                    "type": "postback",
+                    "content_type": "text",
                     "title": "5x5 maze",
                     "payload": "easy",
                 },
                 {
-                    "type": "postback",
+                    "content_type": "text",
                     "title": "7x7 maze",
                     "payload": "medium",
                 },
                 {
-                    "type": "postback",
+                    "content_type": "text",
                     "title": "9x9 maze",
                     "payload": "hard",
                 }
@@ -26,6 +25,33 @@ const responsePostback = {
         }
     }
 }
+
+// const responsePostback = {
+//     "attachment": {
+//         "type": "template",
+//         "payload": {
+//             "template_type": "button",
+//             "text": "Maze Selection:",
+//             "buttons": [
+//                 {
+//                     "type": "postback",
+//                     "title": "5x5 maze",
+//                     "payload": "easy",
+//                 },
+//                 {
+//                     "type": "postback",
+//                     "title": "7x7 maze",
+//                     "payload": "medium",
+//                 },
+//                 {
+//                     "type": "postback",
+//                     "title": "9x9 maze",
+//                     "payload": "hard",
+//                 }
+//             ]
+//         }
+//     }
+// }
 
 const sendInitialGreetings = (sender_psid) => {
     const responseMsg = {
