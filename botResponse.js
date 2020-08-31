@@ -1,29 +1,24 @@
 const request = require('request');
 
 const responsePostback = {
-    "attachment": {
-        "type": "template",
-        "payload": {
-            "text": "Maze Selection:",
-            "quick_replies": [
-                {
-                    "content_type": "text",
-                    "title": "5x5 maze",
-                    "payload": "easy",
-                },
-                {
-                    "content_type": "text",
-                    "title": "7x7 maze",
-                    "payload": "medium",
-                },
-                {
-                    "content_type": "text",
-                    "title": "9x9 maze",
-                    "payload": "hard",
-                }
-            ]
+    "text": "Select a Maze:",
+    "quick_replies": [
+        {
+            "content_type": "text",
+            "title": "5x5 maze",
+            "payload": "easy",
+        },
+        {
+            "content_type": "text",
+            "title": "7x7 maze",
+            "payload": "medium",
+        },
+        {
+            "content_type": "text",
+            "title": "9x9 maze",
+            "payload": "hard",
         }
-    }
+    ]
 }
 
 // const responsePostback = {
