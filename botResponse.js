@@ -84,7 +84,7 @@ const handlePostback = (sender_psid, received_postback, userInfo) => {
     }
 
     responseMsg = {
-        "text": "would you like to try another maze?"
+        "text": mazeString
     }
 
     // Sends the response message
