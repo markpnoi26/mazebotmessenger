@@ -29,7 +29,7 @@ const responsePostback = {
 
 const sendInitialGreetings = (sender_psid) => {
     const responseMsg = {
-        'text': `Welcome to MazeBot - a small coding challenge maze solver. Mazebot generates a random maze based on the size you select and it is your job to solve this maze, by coding a solution into the messenger.\n\nHow Does it work?\n\nA sample maze:\n🐿️⬛⬛⬛🥜\n⬜⬜⬜⬜⬜\n⬜⬛⬛⬛⬜\n\nwalls = ⬛, path = ⬜, start = 🐿️, end =🥜\n\n The solution: "d, r, r, r, r, u" or "d, loop(4-r), u"\n\ncode structure: u <up>, d <down>, l <left>, r <right>, loop(<repeat number>-<u,d,l,r>)\n\nIf the code has errors, the bot will notify you.\n\nIf your code hits a wall, or does not reach the target, a visual representation will be sent to you.\n\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<repeat>-<dir>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution.`
+        'text': `Welcome to MazeBot - a small coding challenge maze solver. MazeBot generates a random maze based on the size you select and it is your job to solve this maze, by coding a solution into the messenger. For windows that can not accomodate wide views, only select 5x11 maze.\nHow Does it work?\nA sample maze:\n🐿️⬛⬛⬛🥜\n⬜⬜⬜⬜⬜\n⬜⬛⬛⬛⬜\nwalls = ⬛, path = ⬜, start = 🐿️, end =🥜\n\n The solution: "d, r, r, r, r, u" or "d, loop(4-r), u"\n\ncode structure: "u" <up>, "d" <down>, "l" <left>, "r" <right>, loop(<repeat number>-<u,d,l,r>)\n\nIf the code has syntax errors, the bot will notify you.\n\nIf your code hits a wall, or does not reach the target, a visual representation will be sent to you.\n\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<repeat>-<dir>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution.`
     }
 
     callSendAPI(sender_psid, responseMsg)
@@ -83,19 +83,10 @@ const handlePostback = (sender_psid, received_postback, userInfo) => {
         mazeString+="\n"
     }
 
-    // Check if the message contains text
-    if (userInfo.solved === false) {    
-        // Create the payload for a basic text message
-        responseMsg = {
-            "text": `${mazeString}`
-            
-        }
-    }  else if (userInfo.solved === true) {
-        responseMsg = {
-            "text": "would you like to try another maze?"
-        }
-    } 
-    
+    responseMsg = {
+        "text": "would you like to try another maze?"
+    }
+
     // Sends the response message
     callSendAPI(sender_psid, { 'text': `This is your current maze. You may send "quit" at any time to end your current maze session. Alternatively, you may select a new maze by sending "maze" or scroll up to select a new maze.` })
         .then(() =>{
@@ -128,7 +119,7 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
         explanationMsg = "Your solution did not reach the end node."
         pathTaken = solutionResponse.incomplete
     } else {
-        explanationMsg = "Your solution hit a wall or went out of bounds."
+        explanationMsg = "Your solution had an error!"
         pathTaken = solutionResponse.failure
     }
 
@@ -167,7 +158,7 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
             return callSendAPI(sender_psid, {"text":explanationMsg})
         })
         .then(() => {
-            if (solutionResponse.success !== undefined) return callSendAPI(sender_psid, {'text': `Try another another maze? Otherwise, you can optimize your solution by using loops. You may also "quit" at any time.`})
+            if (solutionResponse.success !== undefined) return callSendAPI(sender_psid, {'text': `Try another another maze? You can also optimize your solution by using loops. Type "maze" or "quit".`})
             if (solutionResponse.failure !== undefined || solutionResponse.incomplete) return callSendAPI(sender_psid, {"text": received_message.text})
         })
         .then(() => {
@@ -176,11 +167,11 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
                 "quick_replies": [
                     {
                         "content_type":"text",
-                        "title":"Generate a New Maze",
+                        "title":"Generate New Maze",
                         "payload":"maze",
                     },{
                         "content_type":"text",
-                        "title":"Exit My Current Session",
+                        "title":"Exit Maze Session",
                         "payload":"quit",
                     }
                 ]
