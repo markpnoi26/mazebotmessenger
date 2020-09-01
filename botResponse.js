@@ -171,7 +171,21 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
             if (solutionResponse.failure !== undefined || solutionResponse.incomplete) return callSendAPI(sender_psid, {"text": received_message.text})
         })
         .then(() => {
-            if (solutionResponse.success !== undefined) return callSendAPI(sender_psid, responsePostback)
+            responseQuickReply  = {
+                "text": "Pick a color:",
+                "quick_replies": [
+                    {
+                        "content_type":"text",
+                        "title":"maze",
+                        "payload":"maze",
+                    },{
+                        "content_type":"text",
+                        "title":"quit",
+                        "payload":"quit",
+                    }
+                ]
+            }
+            if (solutionResponse.success !== undefined) return callSendAPI(sender_psid, responseQuickReply)
         })
         .catch((error) => console.log({error}))
 
