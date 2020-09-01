@@ -172,15 +172,15 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
         })
         .then(() => {
             responseQuickReply  = {
-                "text": "Pick a color:",
+                "text": "What would you like to do?",
                 "quick_replies": [
                     {
                         "content_type":"text",
-                        "title":"maze",
+                        "title":"Generate a New Maze",
                         "payload":"maze",
                     },{
                         "content_type":"text",
-                        "title":"quit",
+                        "title":"Exit My Current Session",
                         "payload":"quit",
                     }
                 ]
