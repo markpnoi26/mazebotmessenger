@@ -52,14 +52,14 @@ app.post('/webhook', (req, res) => {
                     // check message if solution and solution is correct =>
                     // check if message is "quit", "new maze", "solution" 
                     // if none of those, ask if you want to restart again. => send the postback message start again
-                    if (userMessage.text.toLowerCase() === "quit") {
+                    if (userMessage.text.toLowerCase() === "quit" || userMessage.quick_reply.payload.toLowerCase() === "maze") {
                         // deletes the session in db
                         deleteUserById(userID)
                         return handleQuit(userID, userMessage, userInfo)
-                    } else if (userMessage.text.toLowerCase() === "maze") {
+                    } else if (userMessage.text.toLowerCase() === "maze" || userMessage.quick_reply.payload.toLowerCase() === "maze") {
                         return handleMazeSelection(userID, userMessage)
-                    } else if (userMessage.text.toLowerCase() === "solution" && userInfo.maze.length) {
-                        return console.log("bot shows the solution to the code")
+                    // } else if (userMessage.text.toLowerCase() === "solution" && userInfo.maze.length) {
+                    //     return console.log("bot shows the solution to the code")
                     } else if (isSolutionValid(userInfo.maze, userMessage.text.toLowerCase())) {
                         const maze = userInfo.maze, start = userInfo.start, end = userInfo.end
                         const solution = userMessage.text.toLowerCase().split(",")
