@@ -142,6 +142,9 @@ const handlePostback = (sender_psid, received_postback, userInfo) => {
         .then(() =>{
             return callSendAPI(sender_psid, responseMsg)
         })
+        .then(() => {
+            return callSendAPI(sender_psid, responseQuickReply)
+        })
         .catch((error) => {
             console.log({error})
         })
@@ -212,8 +215,10 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
             if (solutionResponse.failure !== undefined || solutionResponse.incomplete) return callSendAPI(sender_psid, {"text": received_message.text})
         })
         .then(() => {
-            
             if (solutionResponse.success !== undefined) return callSendAPI(sender_psid, responseQuickReply)
+        })
+        .then(() => {
+            return callSendAPI(sender_psid, responseQuickReply)
         })
         .catch((error) => console.log({error}))
 
