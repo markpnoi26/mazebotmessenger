@@ -94,6 +94,9 @@ const sendTutorial = (sender_psid) => {
 const handleGenericMessage = (sender_psid, received_message, userInfo) => {
     
     callSendAPI(sender_psid, {'text': `Either your response is not a valid code, or you have not selected a maze to solve yet. To select a maze, send "maze" or scroll up and select a maze from the options given. If you have a maze already, make sure you have comma seperated operations, and check for invalid operations in your syntax.`})
+        .then(() => {
+            return callSendAPI(sender_psid, responseQuickReply)
+        })
         .catch((error) => {
             console.log(error)
         })
