@@ -61,14 +61,14 @@ const sendInitialGreetings = (sender_psid) => {
 
 const sendTutorial = (sender_psid) => {
     const turnLeftRightMsg = {
-        'text': `Maze Example:\n   ⬛⬛⬛⬛⬛\n   ⬜⬜🐿️⬜⬜\n   ⬛⬛⬛⬛⬛\nMoving left you type in the messenger "l", moving right you type "r"\nSo 'l,l' would look like:\n   ⬛⬛⬛⬛⬛\n   ❌🟩🐿️⬜⬜\n   ⬛⬛⬛⬛⬛\nalternatively, "r,r" would look like:\n   ⬛⬛⬛⬛⬛\n   ⬜⬜🐿️🟩❌\n   ⬛⬛⬛⬛⬛\n`
+        'text': `Maze Example:\n   ⬛⬛⬛⬛⬛\n   ⬜⬜🐿️⬜⬜\n   ⬛⬛⬛⬛⬛\nMoving left you type in the messenger "l", moving right you type "r"\nSo 'l,l' would look like:\n   ⬛⬛⬛⬛⬛\n   ❌🟩🐿️⬜⬜\n   ⬛⬛⬛⬛⬛\nAlternatively, "r,r" would look like:\n   ⬛⬛⬛⬛⬛\n   ⬜⬜🐿️🟩❌\n   ⬛⬛⬛⬛⬛\n`
     }
     const moveUpDownMsg = {
-        'text': `Maze Example:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\nmoving up you type in the messenger "u", moving down you type "d"\nSo 'u,u' would look like:\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\nalternatively, "d,d" would look like:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛❌⬛⬛\n`
+        'text': `Maze Example:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\nMoving up you type in the messenger "u", moving down you type "d"\nSo 'u,u' would look like:\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\nAlternatively, "d,d" would look like:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛❌⬛⬛\n`
 
     }
     const loopingMsg = {
-        'text': `Maze Example:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\nmoving with a loop you type in the messenger "loop(<number>-<direction>)"\nSo 'loop(3-u)' would look like:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛\nalternatively, "loop(4-u)" would look like:\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛`
+        'text': `Maze Example:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\nMoving with a loop you type in the messenger "loop(<number>-<direction>)"\nSo 'loop(3-u)' would look like:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛\nAlternatively, "loop(4-u)" would look like:\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛`
 
     }
 
