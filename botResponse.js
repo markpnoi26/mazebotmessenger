@@ -68,7 +68,7 @@ const sendTutorial = (sender_psid) => {
 
     }
 
-    callSendAPI(sender_psid, responseMsg)
+    callSendAPI(sender_psid, turnLeftRightMsg)
         .then(() => {
             return callSendAPI(sender_psid, turnLeftRightMsg)
         })
