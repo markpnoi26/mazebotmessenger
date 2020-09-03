@@ -52,11 +52,11 @@ const sendInitialGreetings = (sender_psid) => {
     }
 
     callSendAPI(sender_psid, responseMsg)
-        // .then(() => {
-        //     return callSendAPI(sender_psid, responsePostback)
-        // }).catch((error) => {
-        //     console.log({error})
-        // })
+        .then(() => {
+            return callSendAPI(sender_psid, responseQuickReply)
+        }).catch((error) => {
+            console.log({error})
+        })
 }
 
 const sendTutorial = (sender_psid) => {
@@ -81,6 +81,9 @@ const sendTutorial = (sender_psid) => {
         })
         .then(()=> {
             return callSendAPI(sender_psid, { 'text': "If the code has syntax errors, the bot will notify you. If your code hits a wall, or does not reach the target, a visual representation will be sent to you.\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<repeat>-<dir>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution."})
+        })
+        .then(() => {
+            return callSendAPI(sender_psid, responseQuickReply)
         })
         .catch((error) => {
             console.log({ error })
