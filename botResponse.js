@@ -211,7 +211,7 @@ handleSolutionResponse = (sender_psid, received_message, userInfo, solutionRespo
             return callSendAPI(sender_psid, {"text":explanationMsg})
         })
         .then(() => {
-            if (solutionResponse.success !== undefined) return callSendAPI(sender_psid, {'text': `Try another another maze? You can also optimize your solution by using loops. Type "maze" or "quit".`})
+            if (solutionResponse.success !== undefined) return callSendAPI(sender_psid, {'text': `Try another another maze? You can also optimize your solution by using loops.`})
             if (solutionResponse.failure !== undefined || solutionResponse.incomplete) return callSendAPI(sender_psid, {"text": received_message.text})
         })
         .then(() => {
