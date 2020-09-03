@@ -48,33 +48,41 @@ const responseQuickReply = {
 
 const sendInitialGreetings = (sender_psid) => {
     const responseMsg = {
-        'text': `Welcome to MazeBot - a small coding challenge maze solver. MazeBot generates a random maze based on the size you select and it is your job to solve this maze, by coding a solution into the messenger. For windows that can not accomodate wide views, only select 5x11 maze.\nHow Does it work?\nA sample maze:\n🐿️⬛⬛⬛🥜\n⬜⬜⬜⬜⬜\n⬜⬛⬛⬛⬜\nwalls = ⬛, path = ⬜, start = 🐿️, end =🥜\n\n The solution: "d, r, r, r, r, u" or "d, loop(4-r), u"\n\ncode structure: "u" <up>, "d" <down>, "l" <left>, "r" <right>, loop(<repeat number>-<u,d,l,r>)\n\nIf the code has syntax errors, the bot will notify you.\n\nIf your code hits a wall, or does not reach the target, a visual representation will be sent to you.\n\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<repeat>-<dir>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution.`
+        'text': `Welcome to MazeBot - a small coding challenge maze solver. MazeBot generates a random maze based on the size you select and it is your job to solve this maze, by coding a solution into the messenger. For windows that can not accomodate wide views, only select 5x11 maze. You may send 'tutorial' for the tutorial section, 'maze' for maze selection, or 'quit' to end your current session.`
     }
 
     callSendAPI(sender_psid, responseMsg)
-        .then(() => {
-            return callSendAPI(sender_psid, responsePostback)
-        }).catch((error) => {
-            console.log({error})
-        })
+        // .then(() => {
+        //     return callSendAPI(sender_psid, responsePostback)
+        // }).catch((error) => {
+        //     console.log({error})
+        // })
 }
 
 const sendTutorial = (sender_psid) => {
     const turnLeftRightMsg = {
-        'text': `\n⬛⬛⬛⬛⬛\n⬜⬜🐿️⬜⬜\n⬛⬛⬛⬛⬛\n\n moving left you type in the messenger "l", moving right you type "r"\n so 'l,l' would look like \n\n⬛⬛⬛⬛⬛\n❌🟩🐿️⬜⬜\n⬛⬛⬛⬛⬛\n\nalternatively, "r,r" would result in:\n\n\n⬛⬛⬛⬛⬛\n⬜⬜🐿️🟩❌\n⬛⬛⬛⬛⬛\n\n`
+        'text': `Maze Example:\n⬛⬛⬛⬛⬛\n⬜⬜🐿️⬜⬜\n⬛⬛⬛⬛⬛\nMoving left you type in the messenger "l", moving right you type "r"\n so 'l,l' would look like:\n⬛⬛⬛⬛⬛\n❌🟩🐿️⬜⬜\n⬛⬛⬛⬛⬛\nalternatively, "r,r" would look like:\n⬛⬛⬛⬛⬛\n⬜⬜🐿️🟩❌\n⬛⬛⬛⬛⬛\n`
     }
     const moveUpDownMsg = {
-        'text': `\n⬛⬛⬜⬛⬛\n⬛⬛⬜⬛⬛\n⬛⬛🐿️⬛⬛\n⬛⬛⬜⬛⬛\n⬛⬛⬜⬛⬛\n\n moving left you type in the messenger "l", moving right you type "r"\n so 'l,l' would look like\n⬛⬛❌⬛⬛\n⬛⬛🟩⬛⬛\n⬛⬛🐿️⬛⬛\n⬛⬛⬜⬛⬛\n⬛⬛⬜⬛⬛\n\nalternatively, "r,r" would result in:\n⬛⬛⬜⬛⬛\n⬛⬛⬜⬛⬛\n⬛⬛🐿️⬛⬛\n⬛⬛🟩⬛⬛\n⬛⬛❌⬛⬛\n\n`
+        'text': `Maze Example:\n⬛⬛⬜⬛⬛\n⬛⬛⬜⬛⬛\n⬛⬛🐿️⬛⬛\n⬛⬛⬜⬛⬛\n⬛⬛⬜⬛⬛\n\n moving up you type in the messenger "u", moving down you type "d"\n so 'u,u' would look like\n⬛⬛❌⬛⬛\n⬛⬛🟩⬛⬛\n⬛⬛🐿️⬛⬛\n⬛⬛⬜⬛⬛\n⬛⬛⬜⬛⬛\nalternatively, "d,d" would look like:\n⬛⬛⬜⬛⬛\n⬛⬛⬜⬛⬛\n⬛⬛🐿️⬛⬛\n⬛⬛🟩⬛⬛\n⬛⬛❌⬛⬛\n`
+
+    }
+    const loopingMsg = {
+        'text': `Maze Example:\n⬛⬛⬜⬛⬛\n⬛⬛⬜⬛⬛\n⬛⬛⬜⬛⬛\n⬛⬛⬜⬛⬛\n⬛⬛🐿️⬛⬛\n\n moving up with a loop you type in the messenger "loop(4-u)"\n so 'loop(3-u)' would look like\n⬛⬛⬜⬛⬛\n⬛⬛❌⬛⬛\n⬛⬛🟩⬛⬛\n⬛⬛🟩⬛⬛\n⬛⬛🐿️⬛⬛\nalternatively, "loop(4-u)" would look like:\n⬛⬛❌⬛⬛\n⬛⬛🟩⬛⬛\n⬛⬛🟩⬛⬛\n⬛⬛🟩⬛⬛\n⬛⬛🐿️⬛⬛`
 
     }
 
     callSendAPI(sender_psid, turnLeftRightMsg)
         .then(() => {
-            return callSendAPI(sender_psid, turnLeftRightMsg)
+            return callSendAPI(sender_psid, moveUpDownMsg)
         })
         .then(() => {
-            return callSendAPI(sender_psid, moveUpDownMsg)
-        }).catch((error) => {
+            return callSendAPI(sender_psid, loopingMsg)
+        })
+        .then(()=> {
+            return callSendAPI(sender_psid, { 'text': "If the code has syntax errors, the bot will notify you. If your code hits a wall, or does not reach the target, a visual representation will be sent to you.\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<repeat>-<dir>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution."})
+        })
+        .catch((error) => {
             console.log({ error })
         })
 }
