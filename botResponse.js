@@ -68,7 +68,7 @@ const sendTutorial = (sender_psid) => {
 
     }
     const loopingMsg = {
-        'text': `Maze Example:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n⬛⬛🐿️⬛⬛\nmoving with a loop you type in the messenger "loop(<number>-<direction>)"\nSo 'loop(3-u)' would look like:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛\nalternatively, "loop(4-u)" would look like:\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛`
+        'text': `Maze Example:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\nmoving with a loop you type in the messenger "loop(<number>-<direction>)"\nSo 'loop(3-u)' would look like:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛\nalternatively, "loop(4-u)" would look like:\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛`
 
     }
 
