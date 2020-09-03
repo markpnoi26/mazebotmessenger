@@ -3,7 +3,7 @@ const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 
 const 
     { getUserById, createNewUserWithId, updateUserWithMaze, deleteUserById } = require('./stateDB.js'),
-    { handleGenericMessage, handlePostback, sendInitialGreetings, handleMazeSelection, handleQuit, handleSolutionResponse } = require('./botResponse.js'),
+    { handleGenericMessage, handlePostback, sendInitialGreetings, sendTutorial, handleMazeSelection, handleQuit, handleSolutionResponse } = require('./botResponse.js'),
     { generateMaze, isSolutionValid, destructureSolution, checkSolution } = require('./mazeAlgorithms.js'),
     express = require('express'),
     bodyParser = require('body-parser'),
@@ -62,6 +62,9 @@ app.post('/webhook', (req, res) => {
                         return handleMazeSelection(userID, userMessage)
                     // } else if (userMessage.text.toLowerCase() === "solution" && userInfo.maze.length) {
                     //     return console.log("bot shows the solution to the code")
+                    } else if (userMessage.text.toLowerCase() === "tutorial" ||
+                        (userMessage.quick_reply !== undefined && userMessage.quick_reply.payload.toLowerCase() === "tutorial")) {
+                        return sendTutorial(userID, userMessage)
                     } else if (isSolutionValid(userInfo.maze, userMessage.text.toLowerCase())) {
                         const maze = userInfo.maze, start = userInfo.start, end = userInfo.end
                         const solution = userMessage.text.toLowerCase().split(",")
