@@ -28,7 +28,6 @@ const responsePostback = {
 }
 
 const responseQuickReply = {
-    "text": "Here are your selections:",
     "quick_replies": [
         {
             "content_type": "text",
@@ -48,7 +47,7 @@ const responseQuickReply = {
 
 const sendInitialGreetings = (sender_psid) => {
     const responseMsg = {
-        'text': `Welcome to MazeBot - a small coding challenge maze solver. MazeBot generates a random maze based on the size you select and it is your job to solve this maze, by coding a solution into the messenger. For windows that can not accomodate wide views, only select 5x11 maze. You may send 'tutorial' for the tutorial section, 'maze' for maze selection, or 'quit' to end your current session.`
+        'text': `Welcome to MazeBot - a small maze coding challenge bot. MazeBot generates a random maze based on the dimensions you select and it is your job to solve this maze, by coding a solution into the messenger. See "tutorial" for more information to get started. For windows that can not accomodate wide views, only select 5x11 maze. You may send 'maze' for the maze selection window, or 'quit' to end your current session.`
     }
 
     callSendAPI(sender_psid, responseMsg)
