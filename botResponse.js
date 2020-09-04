@@ -28,6 +28,7 @@ const responsePostback = {
 }
 
 const responseQuickReply = {
+    'text': "",
     "quick_replies": [
         {
             "content_type": "text",
