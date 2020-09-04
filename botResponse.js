@@ -32,15 +32,15 @@ const responseQuickReply = {
     "quick_replies": [
         {
             "content_type": "text",
-            "title": "maze",
+            "title": "Maze",
             "payload": "maze",
         }, {
             "content_type": "text",
-            "title": "quit",
+            "title": "Quit",
             "payload": "quit",
         }, {
             "content_type": "text",
-            "title": "tutorial",
+            "title": "Tutorial",
             "payload": "tutorial",
         }
     ]
@@ -61,14 +61,14 @@ const sendInitialGreetings = (sender_psid) => {
 
 const sendTutorial = (sender_psid) => {
     const turnLeftRightMsg = {
-        'text': `Maze Example:\n   ⬛⬛⬛⬛⬛\n   ⬜⬜🐿️⬜⬜\n   ⬛⬛⬛⬛⬛\nMoving left you type in the messenger "l", moving right you type "r"\nSo 'l,l' would look like:\n   ⬛⬛⬛⬛⬛\n   ❌🟩🐿️⬜⬜\n   ⬛⬛⬛⬛⬛\nAlternatively, "r,r" would look like:\n   ⬛⬛⬛⬛⬛\n   ⬜⬜🐿️🟩❌\n   ⬛⬛⬛⬛⬛\n`
+        'text': `Moving Left and Right Maze Example:\n   ⬛⬛⬛⬛⬛\n   ⬜⬜🐿️⬜⬜\n   ⬛⬛⬛⬛⬛\nMoving left you type in the messenger "l", moving right you type "r"\nSo 'l,l' would look like:\n   ⬛⬛⬛⬛⬛\n   ❌🟩🐿️⬜⬜\n   ⬛⬛⬛⬛⬛\nAlternatively, "r,r" would look like:\n   ⬛⬛⬛⬛⬛\n   ⬜⬜🐿️🟩❌\n   ⬛⬛⬛⬛⬛\n`
     }
     const moveUpDownMsg = {
-        'text': `Maze Example:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\nMoving up you type in the messenger "u", moving down you type "d"\nSo 'u,u' would look like:\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\nAlternatively, "d,d" would look like:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛❌⬛⬛\n`
+        'text': `Moving Up and Down Maze Example:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\nMoving up you type in the messenger "u", moving down you type "d"\nSo 'u,u' would look like:\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\nAlternatively, "d,d" would look like:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛❌⬛⬛\n`
 
     }
     const loopingMsg = {
-        'text': `Maze Example:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\nMoving with a loop you type in the messenger "loop(<number>-<direction>)"\nSo 'loop(3-u)' would look like:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛\nAlternatively, "loop(4-u)" would look like:\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛`
+        'text': `Looping Maze Example:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛⬜⬛⬛\n   ⬛⬛🐿️⬛⬛\nMoving with a loop you type in the messenger "loop(<number>-<direction>)"\nSo 'loop(3-u)' would look like:\n   ⬛⬛⬜⬛⬛\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛\nAlternatively, "loop(4-u)" would look like:\n   ⬛⬛❌⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🟩⬛⬛\n   ⬛⬛🐿️⬛⬛`
 
     }
 
@@ -80,7 +80,7 @@ const sendTutorial = (sender_psid) => {
             return callSendAPI(sender_psid, loopingMsg)
         })
         .then(()=> {
-            return callSendAPI(sender_psid, { 'text': "If the code has syntax errors, the bot will notify you. If your code hits a wall, or does not end on the target node, a visual representation will be sent to you. It is possible to pass through the target node and end hitting a wall or not reaching the node. It is also possible to pass the node, and backtrack to reach it again.\n\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<repeat>-<dir>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution."})
+            return callSendAPI(sender_psid, { 'text': "The goal is for the squirrel🐿️ to reach the peanut🥜. If the code has syntax errors, the bot will notify you. If your code hits a wall, or does not end on the target node, a visual representation will be sent to you. It is possible to pass through the target node and end up hitting a wall or landing on an empty node. It is also possible to pass the target node, and backtrack to reach it again. This will be a valid solution.\n\nRules:\n- A single operation is separated by a comma.\n- A single direction (u,l,r,d), and single loop(<repeat>-<dir>) counts as a single operation.\n- The code must not hit any walls in order to succeed.\n- The code must not go out of bounds."})
         })
         .then(() => {
             return callSendAPI(sender_psid, responseQuickReply)
@@ -91,9 +91,22 @@ const sendTutorial = (sender_psid) => {
 }
 
 // Handles messages events
-const handleGenericMessage = (sender_psid, received_message, userInfo) => {
+const handleNotAValidSolution = (sender_psid, received_message, userInfo) => {
     
-    callSendAPI(sender_psid, {'text': `Either your response is not a valid code, or you have not selected a maze to solve yet. To select a maze, send "maze" or scroll up and select a maze from the options given. If you have a maze already, make sure you have comma seperated operations, and check for invalid operations in your syntax.`})
+    callSendAPI(sender_psid, {'text': `Your response is not a valid code. Make sure you have comma seperated operations, and check for invalid operations in your syntax or general typos, and try again.`})
+        .then(() => {
+            return callSendAPI(sender_psid, { "text": received_message.text })
+        })
+        .then(() => {
+            return callSendAPI(sender_psid, responseQuickReply)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+
+const handleNoValidMaze = (sender_psid) => {
+    callSendAPI(sender_psid, { 'text': `You do not have a maze to solve yet. To generate a maze, send "maze" or scroll up and select a maze from the options given.` })
         .then(() => {
             return callSendAPI(sender_psid, responseQuickReply)
         })
@@ -258,7 +271,8 @@ const callSendAPI = (sender_psid, response) => {
 
 module.exports = {
     handleMazeSelection,
-    handleGenericMessage,
+    handleNotAValidSolution,
+    handleNoValidMaze,
     handleSolutionResponse,
     handlePostback,
     sendInitialGreetings,
