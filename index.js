@@ -3,7 +3,7 @@ const PAGE_ACCESS_TOKEN = process.env.page_access_token;
 
 const 
     { getUserById, createNewUserWithId, updateUserWithMaze, deleteUserById } = require('./stateDB.js'),
-    { handleGenericMessage, handlePostback, sendInitialGreetings, sendTutorial, handleMazeSelection, handleQuit, handleSolutionResponse } = require('./botResponse.js'),
+    { handleNotAValidSolution, handleNoValidMaze, handlePostback, sendInitialGreetings, sendTutorial, handleMazeSelection, handleQuit, handleSolutionResponse } = require('./botResponse.js'),
     { generateMaze, isSolutionValid, destructureSolution, checkSolution } = require('./mazeAlgorithms.js'),
     express = require('express'),
     bodyParser = require('body-parser'),
@@ -73,8 +73,10 @@ app.post('/webhook', (req, res) => {
                         const response = checkSolution(maze, start, end, destructuredSolution)
                         console.log(response)
                         return handleSolutionResponse(userID, userMessage, userInfo, response)
+                    } else if (userInfo.maze.length === 0) {
+                        return handleNoValidMaze(userID)
                     } else {
-                        return handleGenericMessage(userID, userMessage, userInfo)
+                        return handleNotAValidSolution(userID, userMessage, userInfo)
                     }
 
                 } else {
