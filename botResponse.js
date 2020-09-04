@@ -28,7 +28,7 @@ const responsePostback = {
 }
 
 const responseQuickReply = {
-    'text': "",
+    'text': "Selections:",
     "quick_replies": [
         {
             "content_type": "text",
