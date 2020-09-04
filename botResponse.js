@@ -80,7 +80,7 @@ const sendTutorial = (sender_psid) => {
             return callSendAPI(sender_psid, loopingMsg)
         })
         .then(()=> {
-            return callSendAPI(sender_psid, { 'text': "If the code has syntax errors, the bot will notify you. If your code hits a wall, or does not reach the target, a visual representation will be sent to you.\n\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<repeat>-<dir>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution."})
+            return callSendAPI(sender_psid, { 'text': "If the code has syntax errors, the bot will notify you. If your code hits a wall, or does not end on the target node, a visual representation will be sent to you. It is possible to pass through the target node and end hitting a wall or not reaching the node. It is also possible to pass the node, and backtrack to reach it again.\n\nRules:\n- A single operation is separated by a comma.\n- A direction (u,l,r,d), and loop(<repeat>-<dir>) is a single operation.\n- The code must not hit any walls in order to succeed, or go out of bounds.\n- The maze will have only one solution."})
         })
         .then(() => {
             return callSendAPI(sender_psid, responseQuickReply)
