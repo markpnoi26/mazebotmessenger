@@ -1,3 +1,7 @@
+const [UP, DOWN, RIGHT, LEFT] = ['u', 'd', 'r', 'l']
+const DIR_SET = new Set([UP, DOWN, RIGHT, LEFT])
+const NUM_SET = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
+
 const generateMaze = (r, c) => {
     const colMax = c
     const rowMax = r
@@ -68,10 +72,10 @@ const randomStartAndEnd = (nodeList) => {
 
 const checkSolution = (maze, start, end, destructuredSolution) => {
     const directions = {
-        "u": [-1, 0],
-        "d": [1, 0],
-        "r": [0, 1],
-        "l": [0, -1]
+        [UP]: [-1, 0],
+        [DOWN]: [1, 0],
+        [RIGHT]: [0, 1],
+        [LEFT]: [0, -1]
     }
     let lastValidPosition = start
     const pathTaken = []
@@ -91,11 +95,10 @@ const checkSolution = (maze, start, end, destructuredSolution) => {
 }
 
 const destructureSolution = (solution) => {
-    const set = new Set(["d", "u", "l", "r"])
     const destructuredSolution = []
     for (let element of solution) {
         const cleanedElement = element.replace(/\s/g, "")
-        if (!set.has(cleanedElement)) {
+        if (!DIR_SET.has(cleanedElement)) {
             const loopArr = cleanedElement.substring(5, cleanedElement.length-1).split("-")
             const loopRep = parseInt(loopArr[0], 10)
             for (let i = 0; i<loopRep; i++) {
@@ -116,10 +119,9 @@ const isSolutionValid = (maze, solution) => {
     let solutionLowerCase = solution.toLowerCase()
     let cleanString = solutionLowerCase.replace(/\s/g, "")
     const solutionArr = cleanString.split(",")
-    const set = new Set(["d", "u", "l", "r"])
 
     for (let element of solutionArr) {
-        if (!set.has(element) && !isValidLoop(element)) return false
+        if (!DIR_SET.has(element) && !isValidLoop(element)) return false
 
     }
 
@@ -127,22 +129,20 @@ const isSolutionValid = (maze, solution) => {
 }
 
 const isValidLoop = loop => {
-    const set = new Set(["d", "u", "l", "r"])
     if (loop.substring(0,4) !== "loop") return false
     if (loop[4] !== "(" && loop[loop.length-1] !== ")") return false
     let loopCondition = loop.substring(5, loop.length - 1)
     const loopArr = loopCondition.split("-")
     if (loopArr.length > 2) return false
     if (!isStringValidNum(loopArr[0])) return false
-    if (!set.has(loopArr[1])) return false
+    if (!DIR_SET.has(loopArr[1])) return false
 
     return true
 }
 
 const isStringValidNum = string => {
-    const set = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
     for (let i=0;i<string.length; i++) {
-        if (!set.has(string[i])) return false
+        if (!NUM_SET.has(string[i])) return false
     }
     return true
 }
@@ -153,23 +153,3 @@ module.exports = {
     destructureSolution,
     checkSolution
 }
-
-
-// const maze = [
-//       [ 1, 1, 1, 1, 1 ],
-//       [ 1, 0, 1, 0, 1 ],
-//       [ 1, 0, 1, 0, 1 ],
-//       [ 1, 0, 0, 0, 1 ],
-//       [ 1, 1, 1, 1, 1 ]
-//     ],
-//     start = [ 1, 1 ], end = [ 1, 3 ] 
-
-// const answer = checkSolution(maze, start, end, ["d", "d", "r", "r", "u", "u"])
-
-// console.log(answer)
-
-// const answer2 = destructureSolution(["loop(4-r)", "d"])
-
-// console.log(answer2)
-
-// isSolutionValid("U,u,u,u,loop(4-r), loop(6-d), l,l,d,d,loop(4-r),u,u")
